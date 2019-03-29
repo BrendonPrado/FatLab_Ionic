@@ -13,5 +13,15 @@
 
 .vertical-center{
 
-  margin-top: 25%;
+  margin-top: 15%;
+}
+
+
+ion-card,ion-select, ion-select-option{
+  max-width: 100% !important;
+
+}
+
+ion-item-divider{
+  background-color: white;
 }

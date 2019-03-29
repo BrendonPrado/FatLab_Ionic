@@ -4,20 +4,40 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content color="medium">
     <ion-card class="vertical-center">
+
+        <ion-item>
+            <ion-card-header>Faça seu Login!</ion-card-header>
+        </ion-item>
+        <ion-item>
       <ion-card-content >
-          <form >
-              <ion-label>Email
-                  <ion-input placeholder="Email" size="large" type="email"></ion-input>
-              </ion-label>
-            <ion-label>Senha
-                <ion-input placeholder="Senha" size="large" type="password"></ion-input>
-            </ion-label>
-            <ion-button type="submit"  color="success" expand="block" size="large" >Logar</ion-button>
+          <form>
+              <ion-item>
+                  <ion-label position="floating"><ion-icon name="mail"></ion-icon>Email:
+                  </ion-label>
+                 <ion-input   size="large" type="email"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                    <ion-label position="floating"> <ion-icon name="key"></ion-icon>Senha:
+                    </ion-label>
+                    <ion-input size="large" type="password"></ion-input>
+              </ion-item>
+
+
+
+              <ion-item-divider>
+            </ion-item-divider>
+
+              <ion-button type="submit"  color="secondary" expand="block" size="large" routerLink="/landing">Entrar</ion-button>
+
+              <ion-button  color="medium" fill="outline" size="small" expand="block" id="botao-cadastro"  routerLink="/home" >
+                  <ion-text color="primary">Não tem Cadastro? Cadastre-se!</ion-text>
+              </ion-button>
           </form>
-          <ion-button  color="medium" fill="outline" size="small" expand="block" id="botao-cadastro"  routerLink="/home" >Não tem Cadastro? Cadastre-se!</ion-button>
       </ion-card-content>
+        </ion-item>
     </ion-card>
 </ion-content>
 

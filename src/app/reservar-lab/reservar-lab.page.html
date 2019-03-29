@@ -1,0 +1,114 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-menu-toggle>
+      <ion-icon name="menu"></ion-icon>
+    </ion-menu-toggle>
+    <ion-title>Reservar Lab</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  color="medium"  >
+
+    <ion-card>
+      <ion-item >
+       <ion-card-header><h3>Reserve um lab agora!</h3></ion-card-header>
+      </ion-item>
+      <ion-item lines="4">
+
+        <ion-card-content slot="start">
+        <form>
+          <ion-list>
+          <ion-item>
+            <ion-label position="floating">Materias: </ion-label>
+            <ion-select  required [(ngModel)]="materia"  name="materia" placeholder="Materias">
+              <ion-select-option>
+                Algoritmos
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+
+            <ion-item-divider>
+
+            </ion-item-divider>
+
+          <ion-item>
+              <ion-radio-group (ionChange)="UpdateVarTempo($event)">
+                <ion-label>Reservar por:</ion-label>
+
+                <ion-item>
+                  <ion-label>Dia
+                  </ion-label>
+                  <ion-radio slot="start" value="dia"></ion-radio>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label>Mês</ion-label>
+                  <ion-radio slot="start" value="mes"></ion-radio>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label>Semestre</ion-label>
+                  <ion-radio slot="start" value="semestre"></ion-radio>
+                </ion-item>
+
+
+                <ion-item>
+                  <ion-label >Período</ion-label>
+                  <ion-radio slot="start" value="periodo"></ion-radio>
+                </ion-item>
+
+              </ion-radio-group>
+            </ion-item>
+
+
+            <ion-item  *ngIf="tempo=='dia'">
+              <ion-label >Escolha o dia</ion-label>
+              <ion-datetime required [(ngModel)]="tempoValue" name="tempoValue" display-format="MMM DD">
+              </ion-datetime>
+            </ion-item>
+
+            <ion-item  *ngIf="tempo=='mes'">
+              <ion-label >Escolha o mês</ion-label>
+              <ion-datetime required [(ngModel)]="tempoValue" name="tempoValue" display-format="MMM">
+              </ion-datetime>
+            </ion-item>
+
+            <ion-item  *ngIf="tempo=='periodo'">
+              <ion-label position="floating">Escolha o período inicial</ion-label>
+              <ion-datetime required  [(ngModel)]="tempoValue"  name="tempoValue" display-format="MMM DD">
+              </ion-datetime>
+            </ion-item>
+
+            <ion-item  *ngIf="tempo=='periodo'">
+              <ion-label position="floating">Escolha o período final</ion-label>
+              <ion-datetime required display-format="MMM DD">
+              </ion-datetime>
+            </ion-item>
+
+
+            <ion-item-divider>
+
+            </ion-item-divider>
+
+            <ion-item *ngIf="tempo&&materia">
+              <ion-label position="floating">Escolha um Lab: </ion-label>
+              <ion-select required [(ngModel)]="lab" name="lab">
+                <ion-select-option>
+                  302
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+
+          <ion-button *ngIf="tempo&&materia&&lab&&tempoValue">
+              Reservar
+            </ion-button>
+          </form>
+        </ion-card-content>
+
+      </ion-item>
+    </ion-card>
+
+
+
+</ion-content>

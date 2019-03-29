@@ -9,6 +9,75 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
+
+  public appPages = [
+    {
+      title: 'Home',
+      url: '/landing',
+      icon: 'home'
+    }
+    , {
+      title: 'Perfil',
+      url: '/page-profile',
+      icon: 'person'
+    },
+    {
+      title: 'Aula Agora',
+      url: '/materias-agora',
+      icon: 'notifications-outline'
+    },
+    {
+      title: 'Matricular em uma matéria',
+      url: '/matricular',
+      icon: 'school'
+    },
+    {
+      title: 'Minhas Matérias',
+      url: '/minhas-materias',
+      icon: 'bookmarks'
+    },
+    {
+      title: 'Reservar Lab',
+      url: '/reservar-lab',
+      icon: 'laptop'
+    },
+    {
+      title: 'Cadastrar novo Usuário',
+      url: '/cadastrar-novo-usuario',
+      icon: 'person-add'
+    },
+    {
+      title: 'Cadastrar Lab',
+      url: '/cadastrar-lab',
+      icon: 'glasses'
+    },
+    {
+      title: 'Cadastrar nova Matéria',
+      url: '/cadastrar-materia',
+      icon: 'glasses'
+    },
+    {
+      title: 'Gerenciar Usuários',
+      url: '/gerenciar-usuarios',
+      icon: 'glasses'
+    },
+    {
+      title: 'Gerenciar Labs',
+      url: '/gerenciar-lab',
+      icon: 'glasses'
+    },
+    {
+      title: 'Gerenciar Matérias',
+      url: '/gerenciar-materia',
+      icon: 'glasses'
+    }
+    ,{
+      title: 'Sair',
+      url: '/',
+      icon: 'exit'
+    }
+  ];
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,

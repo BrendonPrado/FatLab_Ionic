@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-menu-toggle>
+      <ion-icon name="menu"></ion-icon>
+    </ion-menu-toggle>
+    <ion-title>Cadastre um  Usuário!</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="medium">
+
+  <ion-card>
+  <ion-item>
+      <ion-card-title><h3>Preencha todos os campos: </h3></ion-card-title>
+  </ion-item>
+    <ion-item>
+      <ion-card-content slot="start">
+        <form>
+          <ion-list>
+            <ion-label>Escolha o tipo de usuário</ion-label>
+
+            <ion-item>
+            <ion-select required name="tipo" [(ngModel)]="tipo" placeholder="Tipos de usuário" >
+              <ion-select-option>Admin</ion-select-option>
+              <ion-select-option>Aluno</ion-select-option>
+              <ion-select-option>Professor</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+            <ion-item-divider>
+
+            </ion-item-divider>
+
+              <ion-label *ngIf="tipo=='Aluno'" >Numero de RA:</ion-label>
+              <ion-label *ngIf="tipo=='Professor'" >Numero de matricula:</ion-label>
+
+            <ion-item *ngIf="tipo=='Professor'||tipo=='Aluno'">
+              <ion-input type="number" name="numero" required placeholder="Nº:"></ion-input>
+            </ion-item>
+
+            <ion-item *ngIf="tipo=='Professor'||tipo=='Aluno'">
+              <ion-label>Tornar Usuário Admin</ion-label>
+              <ion-checkbox value="Admin"> Tornar admin</ion-checkbox>
+            </ion-item>
+
+            <ion-item *ngIf="tipo=='Admin'">
+              <ion-icon name="mail"></ion-icon><ion-label>Email:</ion-label>
+              <ion-input type="email"  placeholder=" exemplo@batata.com" required></ion-input>
+            </ion-item>
+
+
+            <ion-item *ngIf="tipo=='Admin'">
+              <ion-icon name="key"></ion-icon><ion-label>Senha:</ion-label>
+              <ion-input type="email" min="5"  placeholder="segredoSecreto" required></ion-input>
+            </ion-item>
+
+
+
+          </ion-list>
+
+          <ion-item-divider>
+
+          </ion-item-divider>
+
+
+          <ion-item>
+            <ion-button type="submit" size="medium" expand="block" color="primary" *ngIf="tipo">Matricular</ion-button>
+          </ion-item>
+        </form>
+      </ion-card-content>
+    </ion-item>
+    </ion-card>
+</ion-content>

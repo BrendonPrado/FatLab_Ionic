@@ -58,7 +58,7 @@
                 </ion-item>
 
               </ion-radio-group>
-            </ion-item>           
+            </ion-item>
 
 
             <ion-item  *ngIf="tempo=='dia'">
@@ -100,14 +100,26 @@
             </ion-item>
 
 
-            <ion-item> 
+            <ion-item>
               <ion-select required placeholder="Selecione o período da reserva">
-                <ion-select-option> 7:00 - 9:00 </ion-select-option>
-                <ion-select-option> 9:15 - 10:50 </ion-select-option>
-                <ion-select-option> 10:50 - 12:30 </ion-select-option>
+                <ion-select-option> 7:15 - 8:55 </ion-select-option>
+                <ion-select-option> 9:15 - 10:55 </ion-select-option>
+                <ion-select-option> 10:55 - 12:35 </ion-select-option>
               </ion-select>
             </ion-item>
-            
+
+
+            <ion-item>
+              <ion-select required multiple placeholder="Selecione o período da reserva">
+                <ion-select-option>Segunda-Feira</ion-select-option>
+                <ion-select-option>Terça-Feira</ion-select-option>
+                <ion-select-option>Quarta-Feira</ion-select-option>
+                <ion-select-option>Quinta-Feira</ion-select-option>
+                <ion-select-option>Sexta-Feira</ion-select-option>
+                <ion-select-option>Sabado</ion-select-option>
+              </ion-select>
+            </ion-item>
+
           </ion-list>
 
           <ion-button *ngIf="tempo&&materia&&lab&&tempoValue">

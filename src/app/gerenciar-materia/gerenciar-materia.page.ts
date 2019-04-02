@@ -24,6 +24,7 @@ export class GerenciarMateriaPage implements OnInit {
       nome : 'Joao Batata',
       email: 'jbatata@g.com',
       senha: 'batata',
+      admin:false,
       materias: new Array<Materia>(),
       matricula: '28772398327'
     };

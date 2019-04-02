@@ -17,6 +17,7 @@ const routes: Routes = [
   { path: 'cadastrar-materia', loadChildren: './cadastrar-materia/cadastrar-materia.module#CadastrarMateriaPageModule' },
   { path: 'gerenciar-lab', loadChildren: './gerenciar-lab/gerenciar-lab.module#GerenciarLabPageModule' },
   { path: 'gerenciar-materia', loadChildren: './gerenciar-materia/gerenciar-materia.module#GerenciarMateriaPageModule' },
+  { path: 'perfil', loadChildren: './perfil/perfil.module#PerfilPageModule' },
 ];
 
 @NgModule({

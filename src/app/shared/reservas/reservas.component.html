@@ -1,0 +1,54 @@
+<ion-card>
+  <ion-card-content style="background-color: light">
+    <ion-list>
+      <ion-item>
+          <ion-text color="primary">
+            <h1>Reservas</h1>
+          </ion-text>
+      </ion-item>
+      <ng-container *ngFor="let item of reservas">
+            <ion-list>
+                <ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Matéria: </ion-label>
+                    <ion-text>{{ item.materia.nome}}</ion-text> 
+                  </ion-item>
+
+                  <ion-item>
+                      <ion-label position="floating">Dia: </ion-label>
+                      <ion-text>{{item.dia.getMonth()}}/{{ item.dia.getDay()}}</ion-text>
+                  </ion-item>
+                </ion-item>
+                <ion-item>
+
+                    <ion-item>
+                        <ion-label position="floating">horario Inicial: </ion-label>
+                        <ion-text>{{ item.horarioComeco.getHours()}}:{{item.horarioComeco.getMinutes()}}</ion-text>
+                      </ion-item> 
+                      <ion-item>
+                          <ion-label position="floating">horario Final: </ion-label>
+                          <ion-text>{{ item.horarioFim.getHours()}}:{{item.horarioFim.getMinutes()}}</ion-text>
+                        </ion-item>   
+                </ion-item>
+         
+              <ion-item>
+                <ion-item>
+                    <ion-label position="floating">Professor:</ion-label>
+                    <ion-text>{{item.materia.professor.nome}}</ion-text>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating">Lab: </ion-label>
+                  <ion-text>{{item.lab.numero}}</ion-text>            
+                </ion-item>
+                <ion-button color="danger" (click)="excluirReserva(item.id)" >Excluir</ion-button>
+              </ion-item>
+              </ion-list>
+              
+              <ion-item-divider>
+            
+
+              </ion-item-divider>
+      </ng-container>
+    </ion-list>
+  </ion-card-content>
+</ion-card>

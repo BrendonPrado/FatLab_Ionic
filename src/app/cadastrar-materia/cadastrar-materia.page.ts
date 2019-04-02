@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cadastrar-materia.page.scss'],
 })
 export class CadastrarMateriaPage implements OnInit {
+  nomeMateria: string;
 
   constructor() { }
 

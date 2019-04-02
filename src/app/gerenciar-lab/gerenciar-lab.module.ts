@@ -6,6 +6,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { GerenciarLabPage } from './gerenciar-lab.page';
+import { ReservasComponent } from '../shared/reservas/reservas.component';
+import { SideMenuComponent } from '../shared/side-menu/side-menu.component';
+import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
   {
@@ -19,8 +22,10 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    SharedModule
   ],
-  declarations: [GerenciarLabPage]
+  declarations: [GerenciarLabPage
+   ]
 })
 export class GerenciarLabPageModule {}

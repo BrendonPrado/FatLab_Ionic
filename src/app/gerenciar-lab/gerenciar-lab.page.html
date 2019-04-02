@@ -1,9 +1,34 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>gerenciar-lab</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-side-menu titulo="Gerenciar Labs"></app-side-menu>
 
-<ion-content>
 
+<ion-content color="medium">
+  <ion-card>
+    <ion-item>
+      <ion-card-title><h3>Gerencie os labs!</h3></ion-card-title>
+    </ion-item>
+    <ion-list>
+
+      <ng-container *ngFor="let lab of labs">
+        <ion-item >
+          <ion-label position="floating" class="input-font-large"><b>Lab</b></ion-label>
+          <ion-input type="number"  size="text" autofocus  class="input-font-large"  [readonly]="!(labAEditar==lab.numero)" [value]="lab.numero" ></ion-input>
+          <ion-item class="ion-float-sm-end">
+            <ion-button color="primary"  (click)="editarOn(lab.numero)" *ngIf="labAEditar!==lab.numero"  size="small">Editar número lab</ion-button>
+            <ion-button color="primary"  (click)="editarOn(lab.numero)" *ngIf="labAEditar===lab.numero"  size="small">Confirmar Edição</ion-button>
+            <ion-button color="danger"   (click)="excluirLab(lab.numero)" size="small">Excluir Lab</ion-button>
+          </ion-item>
+          <ion-button color="secondary" *ngIf="reservasOn.includes(lab.numero)" (click)="showReservasOn(lab.numero)" size="small">Fechar reservas desse lab</ion-button>
+          <ion-button color="secondary" *ngIf="!reservasOn.includes(lab.numero)" (click)="showReservasOn(lab.numero)"  size="small">Ver reservas nesse lab</ion-button>
+          <ion-item>
+              <app-reservas [reservas]="lab.reservas" *ngIf="reservasOn.includes(lab.numero)"></app-reservas>
+          </ion-item>
+        </ion-item>
+
+        <ion-item-divider>
+
+        </ion-item-divider>
+      </ng-container>
+
+    </ion-list>
+  </ion-card>
 </ion-content>

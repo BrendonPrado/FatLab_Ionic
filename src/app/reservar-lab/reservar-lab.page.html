@@ -1,11 +1,4 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-menu-toggle>
-      <ion-icon name="menu"></ion-icon>
-    </ion-menu-toggle>
-    <ion-title>Reservar Lab</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-side-menu titulo="Reservar Lab"></app-side-menu>
 
 <ion-content  color="medium"  >
 
@@ -79,29 +72,14 @@
               </ion-datetime>
             </ion-item>
 
-            <ion-item  *ngIf="tempo=='periodo'">
-              <ion-label position="floating">Escolha o período final</ion-label>
+            <ion-item  *ngIf="tempo=='periodo'&&tempoValue">
+              <ion-label [(ngModel)]="tempoValueFim" position="floating">Escolha o período final</ion-label>
               <ion-datetime required display-format="MMM DD">
               </ion-datetime>
             </ion-item>
 
-
-            <ion-item-divider>
-
-            </ion-item-divider>
-
-            <ion-item *ngIf="tempo&&materia">
-              <ion-label position="floating">Escolha um Lab: </ion-label>
-              <ion-select required [(ngModel)]="lab" name="lab">
-                <ion-select-option>
-                  302
-                </ion-select-option>
-              </ion-select>
-            </ion-item>
-
-
             <ion-item>
-              <ion-select required placeholder="Selecione o período da reserva">
+              <ion-select [(ngModel)]="num_aula" *ngIf="tempo&&materia&&tempoValue!='periodo'&&tempoValue||tempo&&materia&&tempoValue=='periodo'&&tempoValueFim" required placeholder="Selecione o período da reserva">
                 <ion-select-option> 7:15 - 8:55 </ion-select-option>
                 <ion-select-option> 9:15 - 10:55 </ion-select-option>
                 <ion-select-option> 10:55 - 12:35 </ion-select-option>
@@ -110,7 +88,7 @@
 
 
             <ion-item>
-              <ion-select required multiple placeholder="Selecione o período da reserva">
+              <ion-select [(ngModel)]="diasSemana" required multiple placeholder="Selecione o período da reserva">
                 <ion-select-option>Segunda-Feira</ion-select-option>
                 <ion-select-option>Terça-Feira</ion-select-option>
                 <ion-select-option>Quarta-Feira</ion-select-option>
@@ -120,9 +98,23 @@
               </ion-select>
             </ion-item>
 
+            <ion-item *ngIf="diasSemana&&num_aula&&tempo&&materia&&tempoValue!='periodo'&&tempoValue||diasSemana&&num_aula&&tempo&&materia&&tempoValue=='periodo'&&tempoValueFim">
+              <ion-label position="floating">Escolha um Lab: </ion-label>
+              <ion-select required [(ngModel)]="lab" name="lab">
+                <ion-select-option>
+                  302
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item-divider>
+
+            </ion-item-divider>
+
+
           </ion-list>
 
-          <ion-button *ngIf="tempo&&materia&&lab&&tempoValue">
+          <ion-button *ngIf="tempo&&materia&&lab&&tempoValue&&diasSemana">
               Reservar
             </ion-button>
           </form>

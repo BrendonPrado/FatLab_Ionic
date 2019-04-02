@@ -1,9 +1,28 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>gerenciar-materia</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-side-menu titulo="Gerenciar Materias"></app-side-menu>
 
-<ion-content>
-
+<ion-content color="medium">
+    <ion-card>
+        <ion-card-content>
+            <ion-list>
+                <ng-container *ngFor="let materia of materias">
+                   <ion-item>
+                        <ion-item>
+                                <ion-label position="floating" class="input-font-large"><b>Nome da Materia: </b></ion-label>
+                                <ion-input type="text"  size="text" autofocus  class="input-font-large"  [readonly]="!(materiaAEditar==materia.id)" [value]="materia.nome" ></ion-input>
+                                <ion-item class="ion-float-sm-end">
+                                  <ion-button color="primary"  (click)="editarOn(materia.id)" *ngIf="materiaAEditar!==materia.id"  size="small">Editar nome</ion-button>
+                                  <ion-button color="primary"  (click)="editarOn(materia.id)" *ngIf="materiaAEditar===materia.id"  size="small">Confirmar Edição</ion-button>
+                                  <ion-button color="danger"   (click)="excluirMateria(materia.id)" size="small">Excluir Materia</ion-button>
+                                </ion-item>
+                                <ion-button color="secondary" *ngIf="reservasOn.includes(materia.id)" (click)="showReservasOn(materia.id)" size="small">Fechar reservas desse lab</ion-button>
+                                <ion-button color="secondary" *ngIf="!reservasOn.includes(materia.id)" (click)="showReservasOn(materia.id)"  size="small">Ver reservas nesse lab</ion-button>
+                                <ion-item>
+                                    <app-reservas [reservas]="materia.reservas" *ngIf="reservasOn.includes(materia.id)"></app-reservas>
+                                </ion-item>
+                              </ion-item>
+                   </ion-item>
+                </ng-container>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
 </ion-content>

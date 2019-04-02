@@ -10,6 +10,9 @@ export class ReservarLabPage implements OnInit {
   materia: string;
   lab: string;
   tempoValue: string;
+  tempoValueFim: string;
+  num_aula: string;
+  diasSemana: string;
 
   constructor() { }
 
@@ -18,6 +21,7 @@ export class ReservarLabPage implements OnInit {
 
   UpdateVarTempo(event){
     this.tempoValue = '';
+    this.tempoValueFim = '';
     this.tempo = event.detail.value;
   }
 

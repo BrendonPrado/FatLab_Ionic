@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Usuario } from 'src/models/usuario.model';
+import { Materia } from 'src/models/materia.model';
+import { Professor } from 'src/models/professor.model';
 
 @Component({
   selector: 'app-perfil',
@@ -7,9 +10,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PerfilPage implements OnInit {
 
+  usuarioLogado: Usuario;
+  campoSenha = 'password';
+  editarOn = true;
+  editarButtonText = 'Editar Informações';
   constructor() { }
 
   ngOnInit() {
+    const user: Professor = new Professor( '1',
+     'Joao Batata',
+    'jbatata@g.com',
+    'batata',
+     false,
+     '28772398327', new Array <Materia>());
+    this.usuarioLogado = user;
+
+  }
+
+  mostraSenha() {
+    this.campoSenha = (this.campoSenha === 'text') ? 'password' : 'text';
+  }
+
+
+  editarInfos() {
+    this.editarOn = (this.editarOn === true ) ? false : true;
+    this.editarButtonText = (this.editarOn === true ) ? 'Editar Informações' : 'Salvar Informações';
+
   }
 
 }

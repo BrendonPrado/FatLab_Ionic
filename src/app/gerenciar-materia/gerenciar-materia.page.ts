@@ -19,15 +19,12 @@ export class GerenciarMateriaPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    const professor: Professor = {
-      id: '1',
-      nome : 'Joao Batata',
-      email: 'jbatata@g.com',
-      senha: 'batata',
-      admin:false,
-      materias: new Array<Materia>(),
-      matricula: '28772398327'
-    };
+    const professor: Professor = new Professor( '1',
+     'Joao Batata',
+    'jbatata@g.com',
+    'batata',
+     false,
+     '28772398327', new Array <Materia>());
 
     const materia1: Materia = {
       id: '1',

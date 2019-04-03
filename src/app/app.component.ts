@@ -18,7 +18,7 @@ export class AppComponent {
     }
     , {
       title: 'Perfil',
-      url: '/page-profile',
+      url: '/perfil',
       icon: 'person'
     },
     {

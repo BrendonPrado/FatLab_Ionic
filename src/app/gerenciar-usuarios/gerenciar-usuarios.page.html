@@ -1,11 +1,44 @@
 <app-side-menu titulo="Gerenciar Usuários"></app-side-menu>
 
-<ion-content>
+<ion-content color="medium">
     <ion-card>
         <ion-card-content>
             <ion-list>
-            <ion-text>Batata</ion-text>
-            </ion-list>
+           <ng-container *ngFor="let usuario of usuarios">
+               <ng-container  *ngIf="isAluno(usuario)">
+
+                      
+                <ion-item >
+                        <ion-item> 
+                            <ion-label>Nome</ion-label>
+                        </ion-item>
+                        <ion-item>
+                            <ion-input  class="input-font-large">{{usuario.nome}}</ion-input>
+                        </ion-item>
+                    </ion-item>
+                        <ion-item>
+                            <ion-item> 
+                                <ion-label>Email</ion-label>
+                            </ion-item>
+                            <ion-item>
+                                <ion-text  class="input-font-large">{{usuario.email}}</ion-text>
+                            </ion-item>
+                        </ion-item>
+            
+                        
+                        <ion-item>
+                            <ion-button class="horizontal-center" (click)="removerUsuario(usuario.id)" color="danger">Excluir usuario</ion-button>
+                        </ion-item>
+
+                        <ion-item-divider style="border-top: 3px solid steelblue;">
+
+
+                        </ion-item-divider>
+
+               </ng-container>
+             
+           </ng-container>
+        </ion-list>
         </ion-card-content>
     </ion-card>
 </ion-content>

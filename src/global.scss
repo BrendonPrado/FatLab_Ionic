@@ -11,10 +11,6 @@
 @import '~@ionic/angular/css/flex-utils.css';
 
 
-.vertical-center{
-
-  margin-top: 15%;
-}
 
 
 ion-card,ion-select, ion-select-option{
@@ -29,4 +25,13 @@ ion-item-divider{
 .input-font-large{
   font-size: 6vw;
 
+}
+.horizontal-center{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.img-round{
+  border-radius: 80%;
+  max-width: 30vw;
 }

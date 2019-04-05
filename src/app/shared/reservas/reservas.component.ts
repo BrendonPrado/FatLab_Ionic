@@ -8,12 +8,15 @@ import { Reserva } from 'src/models/reserva.model';
 })
 export class ReservasComponent implements OnInit {
 
-  @Input() reservas:Array<Reserva>; 
+  @Input() reservas: Array<Reserva>;
+  @Input() admin: boolean;
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
 
-  excluirReserva(id:string){
+  }
+
+  excluirReserva(id: string) {
     console.log(this.reservas);
     this.reservas = this.reservas.filter(reserva => reserva.id !== id);
   }

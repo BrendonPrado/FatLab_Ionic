@@ -1,5 +1,9 @@
 <app-side-menu titulo="Minhas Matérias"></app-side-menu>
 
-<ion-content>
-
+<ion-content color="medium">
+    <ion-card>
+            <ion-card-content>
+                <app-materia-list [materias]="materiasUsuario"></app-materia-list>
+            </ion-card-content>
+    </ion-card>
 </ion-content>

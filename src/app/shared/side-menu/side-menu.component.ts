@@ -7,8 +7,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class SideMenuComponent implements OnInit {
 
-  @Input() titulo:string;
-  
+  @Input() titulo: string;
+
   constructor() { }
 
   ngOnInit() {}

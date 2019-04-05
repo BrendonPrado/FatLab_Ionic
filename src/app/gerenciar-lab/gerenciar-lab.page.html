@@ -20,7 +20,7 @@
           <ion-button color="secondary" *ngIf="reservasOn.includes(lab.numero)" (click)="showReservasOn(lab.numero)" size="small">Fechar reservas desse lab</ion-button>
           <ion-button color="secondary" *ngIf="!reservasOn.includes(lab.numero)" (click)="showReservasOn(lab.numero)"  size="small">Ver reservas nesse lab</ion-button>
           <ion-item>
-              <app-reservas [reservas]="lab.reservas" *ngIf="reservasOn.includes(lab.numero)"></app-reservas>
+              <app-reservas [admin]="true" [reservas]="lab.reservas" *ngIf="reservasOn.includes(lab.numero)"></app-reservas>
           </ion-item>
         </ion-item>
 

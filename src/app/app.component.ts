@@ -71,7 +71,7 @@ export class AppComponent {
       url: '/gerenciar-materia',
       icon: 'glasses'
     }
-    ,{
+    , {
       title: 'Sair',
       url: '/',
       icon: 'exit'
@@ -92,4 +92,6 @@ export class AppComponent {
       this.splashScreen.hide();
     });
   }
+
+
 }

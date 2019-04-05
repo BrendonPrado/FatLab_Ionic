@@ -1,0 +1,23 @@
+<ion-card  class="blue-border">
+  <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-icon size="large" name="bookmarks"></ion-icon>
+      </ion-item>
+      <ion-item>
+          <ion-text>Nome: {{ this.materia.nome}}</ion-text>
+      </ion-item>
+      <ion-item>
+          <ion-text>Professor: {{this.materia.professor.nome}} ajjaj</ion-text>
+      </ion-item>
+    <ion-item>
+    <ion-button color="secondary" size="large" *ngIf="showReservas" (click)="reservasOn()" size="small">Fechar reservas desse lab</ion-button>
+    <ion-button color="secondary" size="large" *ngIf="!showReservas" (click)="reservasOn()"  size="small">Ver reservas nesse lab</ion-button>
+    </ion-item><span hidden></span>
+    <ion-item>
+            <app-reservas [admin]="false" [reservas]="materia.reservas" *ngIf="showReservas"></app-reservas>
+        </ion-item>
+      </ion-list>
+      
+  </ion-card-content>
+</ion-card>

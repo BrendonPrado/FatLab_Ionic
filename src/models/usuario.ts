@@ -94,6 +94,6 @@ export class Usuario {
 	public set admin(value: boolean) {
 		this._admin = value;
 	}
-    
+
 
 }

@@ -1,8 +1,8 @@
 import {Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
-import {Lab} from '../../models/lab.model';
-import {Reserva} from '../../models/reserva.model';
-import {Materia} from '../../models/materia.model';
-import {Professor} from '../../models/professor.model';
+import {Lab} from '../../models/lab';
+import {Reserva} from '../../models/reserva';
+import {Materia} from '../../models/materia';
+import {Professor} from '../../models/professor';
 
 @Component({
   selector: 'app-gerenciar-lab',

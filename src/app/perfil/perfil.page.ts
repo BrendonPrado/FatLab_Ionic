@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Usuario } from 'src/models/usuario.model';
-import { Materia } from 'src/models/materia.model';
-import { Professor } from 'src/models/professor.model';
+import { Usuario } from 'src/models/usuario';
+import { Materia } from 'src/models/materia';
+import { Professor } from 'src/models/professor';
 
 @Component({
   selector: 'app-perfil',

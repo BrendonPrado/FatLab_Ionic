@@ -1,5 +1,5 @@
-import {Lab} from "./lab.model";
-import {Materia} from "./materia.model";
+import {Lab} from "./lab";
+import {Materia} from "./materia";
 
 export interface Reserva {
     id:string;

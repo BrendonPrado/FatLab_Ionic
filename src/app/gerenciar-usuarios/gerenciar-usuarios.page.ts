@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Aluno } from 'src/models/aluno.model';
-import { Lab } from 'src/models/lab.model';
-import { Materia } from 'src/models/materia.model';
-import { Professor } from 'src/models/professor.model';
-import { Reserva } from 'src/models/reserva.model';
-import { Usuario } from 'src/models/usuario.model';
+import { Aluno } from 'src/models/aluno';
+import { Lab } from 'src/models/lab';
+import { Materia } from 'src/models/materia';
+import { Professor } from 'src/models/professor';
+import { Reserva } from 'src/models/reserva';
+import { Usuario } from 'src/models/usuario';
 
 @Component({
   selector: 'app-gerenciar-usuarios',

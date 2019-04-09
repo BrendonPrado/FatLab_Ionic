@@ -13,7 +13,7 @@
             <ion-label>Escolha o tipo de usuário</ion-label>
 
             <ion-item>
-            <ion-select required name="tipo" [(ngModel)]="tipo" placeholder="Tipos de usuário" >
+            <ion-select required name="tipo" [(ngModel)]="usuario.tipo" placeholder="Tipos de usuário" >
               <ion-select-option>Admin</ion-select-option>
               <ion-select-option>Aluno</ion-select-option>
               <ion-select-option>Professor</ion-select-option>
@@ -24,25 +24,25 @@
 
             </ion-item-divider>
 
-              <ion-label *ngIf="tipo=='Aluno'" >Numero de RA:</ion-label>
-              <ion-label *ngIf="tipo=='Professor'" >Numero de matricula:</ion-label>
+              <ion-label *ngIf="usuario.tipo === 'Aluno'"  position="staked">Numero de RA:</ion-label>
+              <ion-label *ngIf="usuario.tipo === 'Professor'"  position="staked">Numero de matricula:</ion-label>
 
-            <ion-item *ngIf="tipo=='Professor'||tipo=='Aluno'">
-              <ion-input type="number" name="numero" required placeholder="Nº:"></ion-input>
+            <ion-item *ngIf="usuario.tipo === 'Professor' || usuario.tipo === 'Aluno'">
+              <ion-input type="number" name="matricula" [(ngModel)]="usuario.matricula" required placeholder="Nº:"></ion-input>
             </ion-item>
 
-            <ion-item *ngIf="tipo=='Professor'||tipo=='Aluno'">
+            <ion-item *ngIf="usuario.tipo=='Professor'||usuario.tipo=='Aluno'">
               <ion-label>Tornar Usuário Admin</ion-label>
-              <ion-checkbox value="Admin"> Tornar admin</ion-checkbox>
+              <ion-checkbox value="Admin" name="admin" [(ngModel)]="usuario.admin"></ion-checkbox>
             </ion-item>
 
-            <ion-item *ngIf="tipo=='Admin'">
+            <ion-item *ngIf="usuario.tipo=='Admin'">
               <ion-icon name="mail"></ion-icon><ion-label>Email:</ion-label>
               <ion-input type="email"  placeholder=" exemplo@batata.com" required></ion-input>
             </ion-item>
 
 
-            <ion-item *ngIf="tipo=='Admin'">
+            <ion-item *ngIf="usuario.tipo=='Admin'">
               <ion-icon name="key"></ion-icon><ion-label>Senha:</ion-label>
               <ion-input type="email" min="5"  placeholder="segredoSecreto" required></ion-input>
             </ion-item>
@@ -57,7 +57,7 @@
 
 
           <ion-item>
-            <ion-button type="submit" size="medium" expand="block" color="primary" *ngIf="tipo">Matricular</ion-button>
+            <ion-button (click)="save()" type="submit" size="medium" expand="block" color="primary" *ngIf="usuario.matricula&&usuario.tipo!=='Admin'">Matricular</ion-button>
           </ion-item>
         </form>
       </ion-card-content>

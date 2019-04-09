@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Professor } from 'src/models/professor.model';
-import { Materia } from 'src/models/materia.model';
-import { Reserva } from 'src/models/reserva.model';
-import { Lab } from 'src/models/lab.model';
+import { Professor } from 'src/models/professor';
+import { Materia } from 'src/models/materia';
+import { Reserva } from 'src/models/reserva';
+import { Lab } from 'src/models/lab';
 
 @Component({
   selector: 'app-gerenciar-materia',

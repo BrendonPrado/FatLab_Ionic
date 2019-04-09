@@ -1,34 +1,32 @@
-import {Usuario} from "./usuario.model";
-import {Materia} from "./materia.model";
+import { Usuario } from './usuario';
+import { Materia } from './materia';
 
-export class Professor extends Usuario{
-    private _matricula: string;
+export class Aluno extends Usuario{
+    private _ra: string;
     private _materias: Array<Materia>;
 
-   
 
-    constructor(id: string, nome: string, email: string, senha: string, admin: boolean, matricula: string, materias: Array<Materia>) {
+    constructor(id: string, nome: string, email: string, senha: string, admin: boolean, ra: string, materias: Array<Materia>) {
         super(id, nome, email, senha, admin);
-        this._matricula = matricula;
+        this._ra = ra;
         this._materias = materias;
     }
 
     /**
-     * Getter matricula
+     * Getter ra
      * @return {string}
      */
-	public get matricula(): string {
-		return this._matricula;
-	}
+    public get ra(): string {
+    return this._ra;
+    }
 
     /**
-     * Setter matricula
+     * Setter ra
      * @param {string} value
      */
-	public set matricula(value: string) {
-		this._matricula = value;
-	}
-
+    public set ra(value: string) {
+    this._ra = value;
+    }
 
     /**
      * Getter materias
@@ -45,4 +43,5 @@ export class Professor extends Usuario{
     public set materias(value: Array<Materia>) {
     this._materias = value;
     }
+
 }

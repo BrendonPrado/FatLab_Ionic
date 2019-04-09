@@ -1,5 +1,5 @@
-import {Professor} from "./professor.model";
-import {Reserva} from "./reserva.model";
+import {Professor} from "./professor";
+import {Reserva} from "./reserva";
 
 export interface Materia {
     id:string;

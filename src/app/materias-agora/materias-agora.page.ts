@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Materia } from 'src/models/materia.model';
-import { Professor } from 'src/models/professor.model';
-import { Reserva } from 'src/models/reserva.model';
-import { Lab } from 'src/models/lab.model';
+import { Materia } from 'src/models/materia';
+import { Professor } from 'src/models/professor';
+import { Reserva } from 'src/models/reserva';
+import { Lab } from 'src/models/lab';
 
 @Component({
   selector: 'app-materias-agora',

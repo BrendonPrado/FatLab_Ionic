@@ -1,15 +1,15 @@
-import { ReservarLabPage } from './../src/app/reservar-lab/reservar-lab.page';
-import { Injectable } from "@angular/core";
-import "rxjs/add/operator/catch";
-import { Http, Response, Headers, URLSearchParams } from "@angular/http";
+import { Injectable } from '@angular/core';
+import { Headers, URLSearchParams } from '@angular/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Injectable()
 export class BaseHttpService {
+  
   baseApiPath: string;
   loader: any = null;
 
   constructor(
-    private http: Http,
+    private http: HttpClient,
   ) {
     this.baseApiPath = this.getApiPath();
   }
@@ -18,19 +18,20 @@ export class BaseHttpService {
   // @description Return API base path
   // @returns string
   private getApiPath(): string {
-    return "http://localhost:8080";
-    
+    return 'http://localhost:8080';
+
   }
 
   // @name setRequestParamsAndHeaders
   // @description set HTTP default params / headers
   // @returns void
   private setRequestParamsAndHeaders(
-    headers: Headers,
-    urlParams: URLSearchParams,
+    headers: HttpHeaders,
+    urlParams?: HttpParams,
     params: any = {}
   ): void {
-    for (var key in params) {
+// tslint:disable-next-line: forin
+    for (let key in params) {
       urlParams.set(key, params[key]);
     }
   }
@@ -38,15 +39,15 @@ export class BaseHttpService {
   // @name get
   // @description HTTP get method
   // @returns Observable
-  public get(url: string, params: any = {}, extraParams: any = {}) {
-    let headers = new Headers({ "Content-Type": "application/json" });
-    let search = new URLSearchParams();
+  public get(url: string, param: any = {}, extraParams: any = {}) {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const params = new HttpParams();
 
-    this.setRequestParamsAndHeaders(headers, search, params);
+    this.setRequestParamsAndHeaders(headers, param, params);
 
     return this.intercept(
       this.http
-        .get(`${this.baseApiPath}/${url}`, { headers, search })
+        .get(`${this.baseApiPath}/${url}`, { headers, params })
     );
   }
 
@@ -54,10 +55,9 @@ export class BaseHttpService {
   // @description HTTP post method
   // @returns Observable
   public post(url: string, data: any = {}, extraParams: any = {}) {
-    let headers = new Headers({ "Content-Type": "application/json" });
-    let search = new URLSearchParams();
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-    this.setRequestParamsAndHeaders(headers, search);
+    this.setRequestParamsAndHeaders(headers);
 
     return this.intercept(
       this.http
@@ -69,10 +69,9 @@ export class BaseHttpService {
   // @description HTTP put method
   // @returns Observable
   public put(url: string, data: any = {}, extraParams: any = {}) {
-    let headers = new Headers({ "Content-Type": "application/json" });
-    let search = new URLSearchParams();
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-    this.setRequestParamsAndHeaders(headers, search);
+    this.setRequestParamsAndHeaders(headers);
 
     return this.intercept(
       this.http
@@ -84,17 +83,16 @@ export class BaseHttpService {
   // @description HTTP patch method
   // @returns Observable
   public patch(url: string, data: any = {}, extraParams: any = {}) {
-    console.log("URL: " + url);
+    console.log('URL: ' + url);
     console.log(data);
 
-    console.log("------------------------------------------------------------");
+    console.log('------------------------------------------------------------');
     console.log(`${this.baseApiPath}/${url}`);
-    console.log("------------------------------------------------------------");
+    console.log('------------------------------------------------------------');
 
-    let headers = new Headers({ "Content-Type": "application/json" });
-    let search = new URLSearchParams();
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-    this.setRequestParamsAndHeaders(headers, search);
+    this.setRequestParamsAndHeaders(headers);
 
     return this.intercept(
       this.http

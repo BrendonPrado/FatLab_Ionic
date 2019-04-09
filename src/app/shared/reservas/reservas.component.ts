@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Reserva } from 'src/models/reserva.model';
+import { Reserva } from 'src/models/reserva';
 
 @Component({
   selector: 'app-reservas',

@@ -1,0 +1,23 @@
+<app-side-menu titulo="Bem vindo"></app-side-menu>
+
+<ion-content color="medium">
+  
+    <mat-grid-list cols="2"   gutterSize="10px" rowHeight="1:1" style="text-align: center;">
+        <ng-container *ngFor="let page of pages">
+            <mat-grid-tile   class="tile-menu" colspan="1"  [routerLink]="[page.url]">
+
+                <ion-grid style=" display: block;" >
+                    <ion-row style=" display: inline-block; text-align: center;">
+                            <ion-icon size="large" [name]="page.icon"></ion-icon> 
+                    </ion-row>
+                    <ion-row style="display: block; ">                    
+                            {{ page.title }}
+                    </ion-row>
+                        
+                </ion-grid>
+                    
+              </mat-grid-tile>
+            </ng-container>
+      </mat-grid-list>
+  
+</ion-content>

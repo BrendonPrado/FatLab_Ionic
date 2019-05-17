@@ -1,0 +1,34 @@
+<app-side-menu titulo="Cadastrar Lab"></app-side-menu>
+
+<ion-content color="medium">
+  <ion-card>
+    <ion-item>
+      <ion-card-header>
+        Preencha o campo a seguir:
+      </ion-card-header>
+    </ion-item>
+    <ion-item>
+      <ion-card-content>
+          <ion-item>
+            <form>
+              <ion-item>
+                <ion-label position="floating">Número do lab:</ion-label>
+                <ion-input required [(ngModel)]="numLab" name="numLab" type="number" ng-pattern="/^-?[0-9][^\.]*$/"></ion-input>
+              </ion-item>
+              <ion-item>
+           
+                <ion-label position="floating">Capacidade de alunos:</ion-label>
+                <ion-input type="number" name="capacidade" [(ngModel)]="capacidade" ng-pattern="/^-?[0-9][^\.]*$/"></ion-input>
+              </ion-item>              
+              <ion-item>
+                <ion-button (click)="save()" *ngIf="numLab && capacidade" expand="block">
+                  Cadastrar
+                </ion-button>
+              </ion-item>
+
+            </form>
+          </ion-item>
+      </ion-card-content>
+    </ion-item>
+  </ion-card>
+</ion-content>

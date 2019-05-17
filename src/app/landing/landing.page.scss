@@ -1,0 +1,21 @@
+.tile-menu{
+    background-color: #f4f5f8;
+    border: #375E97 3px solid;
+    color: #EF5350;
+}
+.exit-tile{
+    background-color: #EF5350;
+    border: #f4f5f8 3px solid;
+    color: #f4f5f8;
+}
+
+.tile-menu:hover{
+    background-color: #375E97;
+    border: #EF5350 3px solid;
+    color: #f4f5f8;
+    
+}
+
+mat-grid-list{
+    margin: 5%;
+}

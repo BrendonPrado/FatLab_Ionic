@@ -1,0 +1,6 @@
+<ion-item *ngIf="!usuarios.length;else showUsuarios">
+  <ion-text>Não há materias Matriculadas!</ion-text>
+</ion-item>
+<ng-container #showUsuarios *ngFor="let usuario of usuarios" >  
+    <app-usuario-template (modificado)="excluirUsuarioDaList($event)"   [usuario]="usuario"></app-usuario-template>
+</ng-container>

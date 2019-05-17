@@ -1,0 +1,40 @@
+<app-side-menu titulo="Perfil"></app-side-menu>
+
+<ion-content color="medium">
+  <ion-card class="card-center" color="tertiary">
+    <ion-card-content color="tertiary">
+      <ion-item>
+              <ion-img class="horizontal-center margin-5"  src="assets/images/perfil.png"></ion-img>
+      </ion-item>
+      <ion-list>
+        <ion-item>
+            <ion-item> 
+                <ion-label>Nome</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-input [readonly]='editarOn'  class="input-font-large" [(ngModel)]="usuarioLogado.nome"></ion-input>
+            </ion-item>
+        </ion-item>
+            <ion-item>
+                <ion-item> 
+                    <ion-label>Email</ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-input [readonly]='editarOn'  class="input-font-large" [(ngModel)]="usuarioLogado.email"></ion-input>
+                </ion-item>
+            </ion-item>
+
+            <ion-item>
+                <ion-item> 
+                    <ion-label>Senha</ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-input [readonly]='editarOn' (click)='mostraSenha()' class="input-font-large" [type]="campoSenha" placeholder="Alterar Senha"></ion-input>
+                </ion-item>
+            </ion-item>
+                <ion-button class="margin-5" (click)='editarInfos()' expand="block" color="secondary">{{ editarButtonText }}</ion-button>
+      </ion-list>
+     
+    </ion-card-content>
+  </ion-card>
+</ion-content>

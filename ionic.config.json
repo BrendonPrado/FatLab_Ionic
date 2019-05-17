@@ -1,0 +1,7 @@
+{
+  "name": "FatLab_Ionic",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

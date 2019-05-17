@@ -1,0 +1,131 @@
+<app-side-menu titulo="Cadastre um  Usuário!"></app-side-menu>
+
+<ion-content color="medium">
+
+    <ion-card>
+        <ion-item>
+            <ion-card-header>
+                <ion-card-title color="secondary">
+                    <h3>Preencha todos os campos:</h3>
+                </ion-card-title>
+            </ion-card-header>
+        </ion-item>
+        <ion-item>
+            <ion-card-content slot="start">
+                <ion-item>
+                    <ion-select
+                        (ionChange)="limpaOutrosCampos()"
+                        [(ngModel)]="tipo"
+                        name="tipo"
+                        required
+                        placeholder="Tipos de usuário"
+                    >
+                        <ion-select-option>Admin</ion-select-option>
+                        <ion-select-option>Aluno</ion-select-option>
+                        <ion-select-option>Professor</ion-select-option>
+                    </ion-select>
+                </ion-item>
+
+                <form
+                    [formGroup]="form"
+                    (submit)="save()"
+                >
+                    <ion-label>Escolha o tipo de usuário</ion-label>
+
+                    <ion-item-divider></ion-item-divider>
+
+                    <div *ngIf="tipo && tipo !== 'Admin'">
+
+                        <ion-item>
+                            <ion-label position="floating">Numero de RA / Matricula:</ion-label>
+                        </ion-item>
+
+                        <ion-item>
+                            <ion-input
+                                formControlName="matricula"
+                                type="number"
+                                name="matricula"
+                                required
+                                placeholder="Nº:"
+                            ></ion-input>
+                        </ion-item>
+
+                        <app-v-message
+                            [message]="'É necessario está informação para o cadastro!'"
+                            *ngIf="(tipo && tipo !== 'Admin') && (!!form.get('matricula').errors?.required &&
+                form.get('matricula').touched)"
+                        >
+                        </app-v-message>
+
+                        <ion-item>
+                            <ion-label>Tornar Usuário Admin</ion-label>
+                            <ion-checkbox
+                                value="Admin"
+                                formControlName="admin"
+                                name="admin"
+                                [value]="false"
+                            ></ion-checkbox>
+                        </ion-item>
+
+                    </div>
+
+                    <div *ngIf=" tipo !== '' && tipo === 'Admin'">
+                        <ion-item>
+                            <ion-icon name="nome"></ion-icon>
+                            <ion-label>Nome:</ion-label>
+                            <ion-input
+                                type="text"
+                                formControlName="nome"
+                                placeholder="Seu nome"
+                                required
+                            ></ion-input>
+                        </ion-item>
+
+                        <ion-item>
+                            <ion-icon name="mail"></ion-icon>
+                            <ion-label>Email:</ion-label>
+                            <ion-input
+                                type="email"
+                                formControlName="email"
+                                placeholder=" exemplo@batata.com"
+                                required
+                            ></ion-input>
+                        </ion-item>
+
+                        <app-v-message
+                            [message]="'Por favor insira um email válido!'"
+                            *ngIf="!!form.get('email').errors?.email && form.get('email').touched"
+                        >
+                        </app-v-message>
+
+                        <ion-item>
+                            <ion-icon name="key"></ion-icon>
+                            <ion-label>Senha:</ion-label>
+                            <ion-input
+                                type="email"
+                                min="5"
+                                formControlName="senha"
+                                placeholder="segredoSecreto"
+                                required
+                            ></ion-input>
+                        </ion-item>
+                    </div>
+
+                    <ion-item-divider></ion-item-divider>
+
+                    <ion-button
+                        *ngIf="tipo"
+                        type="submit"
+                        size="large"
+                        expand="full"
+                        type="submit"
+                        color="secondary"
+                        [disabled]="form.invalid"
+                    >
+                        Matricular
+                    </ion-button>
+                </form>
+            </ion-card-content>
+        </ion-item>
+    </ion-card>
+</ion-content>

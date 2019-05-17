@@ -1,0 +1,24 @@
+<app-side-menu titulo="Cadastre uma Matéria"></app-side-menu>
+
+<ion-content color="medium">
+  <ion-card>
+    <ion-item>
+      <ion-card-title><h3>Cadastre uma nova materia no sistema</h3></ion-card-title>
+    </ion-item>
+    <ion-item>
+      <form>
+        <ion-item>
+          <ion-label  position="floating">Entre com o nome da matéria</ion-label>
+          <ion-input [(ngModel)]="nomeMateria" name="nomeMateria" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label  position="floating" size="small">identificador da Turma (ex: A, B)</ion-label>
+            <ion-input maxlength="1" [(ngModel)]="turma" name="turma" type="text"></ion-input>
+          </ion-item>
+        <ion-item *ngIf="nomeMateria&&turma">
+          <ion-button (click)="save()">Cadastar</ion-button>
+        </ion-item>
+      </form>
+    </ion-item>
+  </ion-card>
+</ion-content>

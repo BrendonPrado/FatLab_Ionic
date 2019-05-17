@@ -1,0 +1,103 @@
+<ion-card class="blue-border">
+    <ion-card-content>
+        <ion-list>
+            <ion-item>
+                <ion-item>
+                    <ion-label>Nome</ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-text>
+                        <h3>{{usuarioPerfil.usuario.nome == '' ? usuarioPerfil.usuario.nome : 'ainda não preenchido' }}</h3>
+                    </ion-text>
+                </ion-item>
+            </ion-item>
+            <ion-item>
+                <ion-item>
+                    <ion-label>Email</ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-text>
+                        <h3>{{usuarioPerfil.usuario.email == '' ? usuarioPerfil.usuario.email : 'ainda não preenchido' }}</h3>
+                    </ion-text>
+                </ion-item>
+            </ion-item>
+            <div *ngIf="tipo != 'Admin';else isAdm">
+                <ion-item>
+                    <ion-select
+                        [(ngModel)]="tipo"
+                        name="tipo"
+                        required
+                        placeholder="Tipos de usuário"
+                    >
+                        <ion-select-option>Admin</ion-select-option>
+                        <ion-select-option>Aluno</ion-select-option>
+                        <ion-select-option>Professor</ion-select-option>
+                    </ion-select>
+                </ion-item>
+                <form [formGroup]="form">
+                    <ng-container *ngIf="tipo === 'Aluno';else isProf">
+                        <ion-item>
+                            <ion-item>
+                                <ion-label postion="staked">RA</ion-label>
+                            </ion-item>
+                            <ion-item>
+                                <ion-input
+                                    formControlName="matricula"
+                                    class="input-font-large"
+                                    name="ra"
+                                ></ion-input>
+                            </ion-item>
+                        </ion-item>
+                    </ng-container>
+
+                    <ng-template #isProf>
+                        <ion-item>
+                            <ion-item>
+                                <ion-label postion="staked">Matricula</ion-label>
+                            </ion-item>
+                            <ion-item>
+                                <ion-input
+                                    formControlName="matricula"
+                                    class="input-font-large"
+                                    name="matricula"
+                                ></ion-input>
+                            </ion-item>
+                        </ion-item>
+                    </ng-template>
+
+                    <ng-container>
+                        <ion-item>
+                            <ion-item>
+                                <ion-label postion="staked">Admin</ion-label>
+                            </ion-item>
+                            <ion-item>
+                                <ion-checkbox formControlName="admin"></ion-checkbox>
+                            </ion-item>
+                        </ion-item>
+                    </ng-container>
+                    <ion-button
+                        (click)='editarInfos()'
+                        expand="block"
+                        color="primary"
+                    >
+                        {{ editarButtonText }}
+                    </ion-button>
+                </form>
+            </div>
+            <ng-template #isAdm>
+                <ion-text class="text-muted ion-text-center">
+                    <h4>Este Usuário é um Admin !</h4>
+                </ion-text>
+            </ng-template>
+
+            <ion-button
+                color="danger"
+                expand="block"
+                (click)="remove(usuarioPerfil.usuario.id)"
+            >
+                Excluir
+            </ion-button>
+        </ion-list>
+
+    </ion-card-content>
+</ion-card>

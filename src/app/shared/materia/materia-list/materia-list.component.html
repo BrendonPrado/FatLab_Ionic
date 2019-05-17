@@ -1,0 +1,6 @@
+<ion-item *ngIf="!materias.length;else showMaterias">
+    <ion-text>Não há materias Matriculadas!</ion-text>
+  </ion-item>
+<ng-container #showMaterias *ngFor="let materia of materias" >  
+      <app-materia-template [materia]="materia"></app-materia-template>
+</ng-container>

@@ -1,0 +1,6 @@
+<ion-item *ngIf="!labs.length;else showLabs">
+    <ion-text>Não há materias Matriculadas!</ion-text>
+  </ion-item>
+<ng-container #showLabs *ngFor="let lab of labs" >  
+      <app-lab-template [lab]="lab"></app-lab-template>
+</ng-container>

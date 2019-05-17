@@ -1,0 +1,17 @@
+<ion-card>
+  <ion-card-content style="background-color: light">
+      <ion-item>
+          <ion-text color="primary">
+            <h1>Reservas</h1>
+          </ion-text>
+      </ion-item>
+      <ion-item *ngIf="reservas$ | async as reservas;else NoReservas">
+      <ng-container *ngFor="let reserva of reservas">
+        <app-reserva-template [reserva]="reserva"></app-reserva-template>
+      </ng-container>
+      </ion-item>
+      <ng-template #NoReservas>
+        <ion-text> <h2>Não há Reservas realizadas</h2></ion-text>
+      </ng-template>
+  </ion-card-content>
+</ion-card>

@@ -1,0 +1,60 @@
+// http://ionicframework.com/docs/theming/
+@import '~@ionic/angular/css/core.css';
+@import '~@ionic/angular/css/normalize.css';
+@import '~@ionic/angular/css/structure.css';
+@import '~@ionic/angular/css/typography.css';
+@import '~@ionic/angular/css/display.css';
+@import '~@ionic/angular/css/padding.css';
+@import '~@ionic/angular/css/float-elements.css';
+@import '~@ionic/angular/css/text-alignment.css';
+@import '~@ionic/angular/css/text-transformation.css';
+@import '~@ionic/angular/css/flex-utils.css';
+
+
+
+
+ion-card,ion-select, ion-select-option{
+  max-width: 100% !important;
+
+}
+
+ion-item-divider{
+  background-color: white;
+}
+
+.input-font-large{
+  font-size: 6vw;
+
+}
+.horizontal-center{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.img-round{
+  border-radius: 80%;
+  max-width: 30vw;
+}
+ion-toolbar{
+  padding: 4.5vh;
+  ion-title{
+    text-align: center;
+    font-size: 4vh;
+    margin-top: 2vh;
+  }
+ }
+
+ .margin-5{
+  margin: 5%
+}
+
+.blue-border{
+  background-color: #375E97
+}
+
+
+
+.blue-border:hover{
+  background-color: rgba(109, 131, 201, 0.37);
+  font-size: 20vw;
+}

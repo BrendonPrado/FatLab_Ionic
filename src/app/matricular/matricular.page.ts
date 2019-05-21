@@ -46,10 +46,15 @@ export class MatricularPage implements OnInit,OnChanges {
   }
 
   atualiza() {
+    console.log(this.materias);
     this.minhasMaterias.forEach( x => {
       this.materias = this.materias.filter(f =>  f.id !== x.id);
     });
     this.materia = {id: '', nome: ''};
+    if (this.usuarioLogado.funcao.includes('Professor')) {
+      console.log(this.materias);
+      this.materias = this.materias.filter(f => !f.professor);
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -62,6 +67,8 @@ export class MatricularPage implements OnInit,OnChanges {
       materia_id: this.materia.id,
       usuario_id: this.usuarioLogado.id
     };
+    console.log(matricula);
+    
     if (this.usuarioLogado.funcao.includes('Professor')){
       this.service.matricula(matricula, 'professor').subscribe(response => {
         this.minhasMaterias.push(this.materia);

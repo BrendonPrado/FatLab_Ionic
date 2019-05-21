@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Usuario } from 'src/models/usuario';
-import { ObjcetEvent, Evento } from 'src/models/object-event';
+import { ObjectEvent, Evento } from 'src/models/object-event';
 import { SharingService } from 'src/service/sharing.service';
 
 @Component({
@@ -22,7 +22,7 @@ export class UsuarioListComponent implements OnInit {
     this.usuarios = this.usuarios.filter(usuarioPerfil => usuarioPerfil.usuario.id != meuUsuario.id);
   }
 
-  excluirUsuarioDaList(retorno: ObjcetEvent) {
+  excluirUsuarioDaList(retorno: ObjectEvent) {
     if (retorno.evento === Evento.DELETADO) {
         this.usuarios = this.usuarios.filter( usuarioLoop => usuarioLoop.usuario.id !== retorno.id);
       }

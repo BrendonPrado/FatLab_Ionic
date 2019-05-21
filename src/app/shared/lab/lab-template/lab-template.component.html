@@ -1,0 +1,71 @@
+<ion-card class="blue-border">
+    <ion-card-content>
+        <ion-list>
+            <ion-item>
+                <ion-icon
+                    size="large"
+                    name="laptop"
+                ></ion-icon>
+            </ion-item>
+
+            <form [formGroup]="form">
+                <ion-item>
+                    <ion-label position="staked">Numero:</ion-label>
+                    <ion-input
+                        formControlName="numero"
+                        [disabled]='!editarOn'
+                    ></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="staked">Capacidade:</ion-label>
+                    <ion-input
+                        [disabled]='!editarOn'
+                        formControlName="capacidade"
+                    ></ion-input>
+                </ion-item>
+            </form>
+
+            <ion-button
+                color="primary"
+                expand="block"
+                (click)="editarInfos()"
+            >
+                {{ editarButtonText }}
+            </ion-button>
+
+            <ion-button
+                color="secondary"
+                expand="block"
+                *ngIf="showReservas"
+                (click)='reservasOn()'
+            >
+                Fechar reservas dessa lab
+            </ion-button>
+            <ion-button
+                color="secondary"
+                expand="block"
+                *ngIf="!showReservas"
+                (click)='reservasOn()'
+            >
+                Ver reservas nesse lab
+            </ion-button>
+
+            <ion-item>
+                <app-reservas
+                    *ngIf="showReservas"
+                    [id]='lab.id'
+                    [admin]='true'
+                ></app-reservas>
+            </ion-item>
+
+            <ion-button
+                color="danger"
+                expand="block"
+                (click)="remove(lab.id)"
+            >
+                Excluir
+            </ion-button>
+        </ion-list>
+
+    </ion-card-content>
+</ion-card>

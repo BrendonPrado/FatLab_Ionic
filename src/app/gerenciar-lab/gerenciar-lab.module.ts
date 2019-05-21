@@ -10,6 +10,7 @@ import { ReservasComponent } from '../shared/reservas/reservas.component';
 import { SideMenuComponent } from '../shared/side-menu/side-menu.component';
 import { SharedModule } from '../shared/shared.module';
 import { AllLabsResolver } from 'src/guards/resolvers/all-labs.resolver';
+import { LabModule } from '../shared/lab/lab.module';
 
 const routes: Routes = [
   {
@@ -24,7 +25,8 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    SharedModule
+    SharedModule,
+    LabModule
   ],
   providers: [AllLabsResolver],
   declarations: [GerenciarLabPage

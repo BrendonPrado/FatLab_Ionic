@@ -1,0 +1,6 @@
+<ion-item *ngIf="!labs.length;else showLabs">
+    <ion-text>Não há Labs cadastrados!</ion-text>
+  </ion-item>
+<ng-container #showLabs *ngFor="let lab of labs" >  
+      <app-lab-template [lab]="lab" (modificado)="excluirLabDaList($event)"></app-lab-template>
+</ng-container>

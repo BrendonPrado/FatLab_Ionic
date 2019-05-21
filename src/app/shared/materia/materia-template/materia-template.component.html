@@ -1,23 +1,83 @@
-<ion-card  class="blue-border">
-  <ion-card-content>
-      <ion-list>
-        <ion-item>
-          <ion-icon size="large" name="bookmarks"></ion-icon>
-      </ion-item>
-      <ion-item>
-          <ion-text>Nome: {{ this.materia.nome}}</ion-text>
-      </ion-item>
-      <ion-item>
-          <ion-text>Professor: {{(this.materia.professor == null)? 'Sem professor': this.materia.professor.nome }} </ion-text>
-      </ion-item>
-    <ion-item>
-    <ion-button color="secondary" size="large" *ngIf="showReservas" (click)="reservasOn()" size="small">Fechar reservas dessa materia</ion-button>
-    <ion-button color="secondary" size="large" *ngIf="!showReservas" (click)="reservasOn()"  size="small">Ver reservas nesse materia</ion-button>
-    </ion-item><span hidden></span>
-    <ion-item>
-            <app-reservas [admin]="false" [id]="materia.id" *ngIf="showReservas"></app-reservas>
-        </ion-item>
-      </ion-list>
-      
-  </ion-card-content>
+<ion-card class="blue-border">
+    <ion-card-content>
+        <ion-list>
+            <ion-item>
+                <ion-icon
+                    size="large"
+                    name="bookmarks"
+                ></ion-icon>
+            </ion-item>
+
+            <form [formGroup]="form">
+                <ion-item>
+                    <ion-label position="staked">Nome:</ion-label>
+                    <ion-input formControlName="nome"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="staked">Professor:</ion-label>
+                    <ion-select
+                        value="2"
+                        formControlName="prof"
+                    >
+                        <ion-select-option
+                            [value]="null"
+                            selected
+                        >
+                            não preenchido
+                        </ion-select-option>
+                        <ion-select-option
+                            [value]="prof.id"
+                            *ngFor="let prof of professores"
+                        >
+                            {{ prof.usuario.nome }}
+                        </ion-select-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="staked">Turma:</ion-label>
+                    <ion-input formControlName="turma"></ion-input>
+                </ion-item>
+                <ion-button
+                    (click)='editarInfos()'
+                    expand="block"
+                    color="primary"
+                >
+                    {{ editarButtonText }}
+                </ion-button>
+            </form>
+
+            <ion-button
+                color="secondary"
+                expand="block"
+                *ngIf="showReservas"
+                (click)="reservasOn()"
+            >
+                Fechar reservas dessa materia
+            </ion-button>
+            <ion-button
+                color="secondary"
+                expand="block"
+                *ngIf="!showReservas"
+                (click)="reservasOn()"
+            >
+                Ver reservas nesse materia
+            </ion-button>
+            <ion-item>
+                <app-reservas
+                    [admin]="false"
+                    [id]="materia.id"
+                    *ngIf="showReservas"
+                ></app-reservas>
+            </ion-item>
+
+            <ion-button
+                color="danger"
+                expand="block"
+                (click)="remove(materia.id)"
+            >
+                Excluir
+            </ion-button>
+        </ion-list>
+
+    </ion-card-content>
 </ion-card>

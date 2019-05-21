@@ -10,15 +10,24 @@ import { Materia } from 'src/models/materia';
 export class MateriaService {
     constructor(private http: HttpClient) {}
     materiaUrl = 'materias';
-   public save(materia: MateriaDTO) {
+   
+    save(materia: MateriaDTO) {
        return this.http.post(`${API_CONFIG.baseUrl}/${this.materiaUrl}`, materia);
    }
 
-   public findAll(): Observable<Array<Materia>> {
+   findAll(): Observable<Array<Materia>> {
        return this.http.get<Array<Materia>>(`${API_CONFIG.baseUrl}/${this.materiaUrl}`);
    }
+
+   delete(id: string) {
+       return this.http.delete(`${API_CONFIG.baseUrl}/${this.materiaUrl}/${id}`);
+  }
 
    matricula(matricula: MatriculaDTO, tipo: string) {
        return this.http.post(`${API_CONFIG.baseUrl}/${this.materiaUrl}/${tipo}`, matricula);
   }
+
+  update(id: string, materiaDTO: MateriaDTO) {
+        return this.http.put(`${API_CONFIG.baseUrl}/${this.materiaUrl}/${id}`, materiaDTO);
+    }
 }

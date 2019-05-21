@@ -3,7 +3,7 @@ import { Usuario } from 'src/models/usuario';
 import { UsuarioService } from 'src/service/domain/usuario.service';
 import { Aluno } from 'src/models/aluno';
 import { Professor } from 'src/models/professor';
-import { ObjcetEvent, Evento } from 'src/models/object-event';
+import { ObjectEvent, Evento } from 'src/models/object-event';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
@@ -14,11 +14,11 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class UsuarioTemplateComponent implements OnInit {
 
   @Input('usuario') usuarioPerfil: any;
-  @Output() modificado = new EventEmitter<ObjcetEvent>();
+  @Output() modificado = new EventEmitter<ObjectEvent>();
 
 
   campoSenha = 'password';
-  editarOn = true;
+  editarOn = false;
   editarButtonText = 'Editar Informações';
   form: FormGroup;
   multiFuncao: boolean;
@@ -41,7 +41,6 @@ export class UsuarioTemplateComponent implements OnInit {
         admin: [this.multiFuncao],
         matricula: []
       });
-
       this.usuarioPerfil.usuario.funcao.includes('Aluno') ?
         this.form.get('matricula').setValue(this.usuarioPerfil.ra) :
         this.form.get('matricula').setValue(this.usuarioPerfil.matricula);
@@ -56,15 +55,15 @@ export class UsuarioTemplateComponent implements OnInit {
 
   editarInfos() {
     this.editarOn = !this.editarOn;
-    this.editarButtonText = (this.editarOn === true) ? 'Editar Informações' : 'Salvar Informações';
-    if (this.editarOn) {
+    this.editarButtonText = (!this.editarOn) ? 'Editar Informações' : 'Salvar Informações';
+    if (!this.editarOn) {
       this.usuarioService.update(this.usuarioPerfil.usuario.id, this.form.getRawValue()).subscribe();
     }
   }
 
   remove(id: string) {
     return this.usuarioService.delete(id).subscribe(() => {
-      const event: ObjcetEvent = { evento: Evento.DELETADO, id: this.usuarioPerfil.usuario.id };
+      const event: ObjectEvent = { evento: Evento.DELETADO, id: this.usuarioPerfil.usuario.id };
       this.modificado.emit(event);
     });
   }

@@ -7,9 +7,8 @@ import { Lab } from 'src/models/lab';
 
 @Injectable({providedIn: 'root'})
 export class LabService {
-    private labUrl = 'labs';
     constructor(private http: HttpClient) { }
-
+    private labUrl = 'labs';
 
     save(lab: LabDTO) {
         return this.http.post(`${API_CONFIG.baseUrl}/${this.labUrl}`, lab);
@@ -18,4 +17,12 @@ export class LabService {
     findAll(): Observable<Array<Lab>> {
         return this.http.get<Array<Lab>>(`${API_CONFIG.baseUrl}/${this.labUrl}`);
     }
+
+    delete(id: string) {
+        return this.http.delete(`${API_CONFIG.baseUrl}/${this.labUrl}/${id}`);
+    }
+
+    update(id: string, labDTO: LabDTO) {
+        return this.http.put(`${API_CONFIG.baseUrl}/${this.labUrl}/${id}`, labDTO);
+      }
 }

@@ -1,4 +1,4 @@
-export interface ObjcetEvent {
+export interface ObjectEvent {
     evento: Evento;
     id?: string;
 }

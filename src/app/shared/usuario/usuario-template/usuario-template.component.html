@@ -3,45 +3,55 @@
         <ion-list>
             <ion-item>
                 <ion-item>
-                    <ion-label>Nome</ion-label>
+                    <ion-label>Nome:</ion-label>
                 </ion-item>
                 <ion-item>
                     <ion-text>
-                        <h3>{{usuarioPerfil.usuario.nome == '' ? usuarioPerfil.usuario.nome : 'ainda não preenchido' }}</h3>
+                        <h3>
+                            {{usuarioPerfil.usuario.nome  ? usuarioPerfil.usuario.nome : 'ainda não preenchido' }}
+                        </h3>
                     </ion-text>
                 </ion-item>
             </ion-item>
             <ion-item>
                 <ion-item>
-                    <ion-label>Email</ion-label>
+                    <ion-label>Email:</ion-label>
                 </ion-item>
                 <ion-item>
                     <ion-text>
-                        <h3>{{usuarioPerfil.usuario.email == '' ? usuarioPerfil.usuario.email : 'ainda não preenchido' }}</h3>
+                        <h3>
+                            {{usuarioPerfil.usuario.email  ? usuarioPerfil.usuario.email : 'ainda não preenchido' }}
+                        </h3>
                     </ion-text>
                 </ion-item>
             </ion-item>
             <div *ngIf="tipo != 'Admin';else isAdm">
                 <ion-item>
-                    <ion-select
-                        [(ngModel)]="tipo"
-                        name="tipo"
-                        required
-                        placeholder="Tipos de usuário"
-                    >
-                        <ion-select-option>Admin</ion-select-option>
-                        <ion-select-option>Aluno</ion-select-option>
-                        <ion-select-option>Professor</ion-select-option>
-                    </ion-select>
+                    <ion-item>
+                        <ion-label postion="staked">Tipo:</ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-select
+                            [(ngModel)]="tipo"
+                            name="tipo"
+                            [disabled]='!editarOn'
+                            required
+                            placeholder="Tipos de usuário"
+                        >
+                            <ion-select-option>Aluno</ion-select-option>
+                            <ion-select-option>Professor</ion-select-option>
+                        </ion-select>
+                    </ion-item>
                 </ion-item>
                 <form [formGroup]="form">
                     <ng-container *ngIf="tipo === 'Aluno';else isProf">
                         <ion-item>
                             <ion-item>
-                                <ion-label postion="staked">RA</ion-label>
+                                <ion-label postion="staked">RA:</ion-label>
                             </ion-item>
                             <ion-item>
                                 <ion-input
+                                    [disabled]='!editarOn'
                                     formControlName="matricula"
                                     class="input-font-large"
                                     name="ra"
@@ -53,12 +63,13 @@
                     <ng-template #isProf>
                         <ion-item>
                             <ion-item>
-                                <ion-label postion="staked">Matricula</ion-label>
+                                <ion-label postion="staked">Matricula:</ion-label>
                             </ion-item>
                             <ion-item>
                                 <ion-input
                                     formControlName="matricula"
                                     class="input-font-large"
+                                    [disabled]='!editarOn'
                                     name="matricula"
                                 ></ion-input>
                             </ion-item>
@@ -68,10 +79,13 @@
                     <ng-container>
                         <ion-item>
                             <ion-item>
-                                <ion-label postion="staked">Admin</ion-label>
+                                <ion-label postion="staked">Admin:</ion-label>
                             </ion-item>
                             <ion-item>
-                                <ion-checkbox formControlName="admin"></ion-checkbox>
+                                <ion-checkbox
+                                    [disabled]='!editarOn'
+                                    formControlName="admin"
+                                ></ion-checkbox>
                             </ion-item>
                         </ion-item>
                     </ng-container>
@@ -98,6 +112,5 @@
                 Excluir
             </ion-button>
         </ion-list>
-
     </ion-card-content>
 </ion-card>

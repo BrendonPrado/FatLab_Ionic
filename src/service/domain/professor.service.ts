@@ -14,4 +14,8 @@ export class ProfessorService {
     findAlunoByUsuarioId(id: string): Observable<Professor> {
         return this.http.get<Professor>(`${API_CONFIG.baseUrl}/${this.professoresUrl}/usuario/${id}`);
     }
+
+    findAll(): Observable<Professor[]> {
+        return this.http.get<Professor[]>(`${API_CONFIG.baseUrl}/${this.professoresUrl}`);
+    }
 }

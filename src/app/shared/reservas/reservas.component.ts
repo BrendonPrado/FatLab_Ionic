@@ -22,12 +22,15 @@ export class ReservasComponent implements OnInit {
   materiasUrlList = ['/minhas-materias', '/gerenciar-materia'];
   labUrlList = ['/gerenciar-lab'];
   ngOnInit() {
-    if (this.materiasUrlList.includes(this.router.url) ) {
+    if (this.materiasUrlList.includes(this.router.url)) {
       this.reservas$ = this.reservaService.reservasMateria(this.id);
+      this.reservaService.reservasMateria(this.id).subscribe(val => {
+        console.log(val);
+      });
     }
     if (this.labUrlList.includes(this.router.url)) {
       this.reservas$ = this.reservaService.reservasLab(this.id);
-     }
+    }
   }
 
   excluirReserva(id: string) {

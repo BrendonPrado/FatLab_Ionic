@@ -11,6 +11,7 @@ import { AllMateriasResolver } from 'src/guards/resolvers/all-materias.resolver'
 import { AllLabsResolver } from 'src/guards/resolvers/all-labs.resolver';
 import { AllUsuariosResolver } from 'src/guards/resolvers/all-usuarios.resolver';
 import { AllProfessoresResolver } from 'src/guards/resolvers/all-profs.resolver';
+import { MateriaAgoraResolver } from 'src/guards/resolvers/materia-agr.resolver';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -37,7 +38,7 @@ const routes: Routes = [
   {
     path: 'reservar-lab',
     loadChildren: './reservar-lab/reservar-lab.module#ReservarLabPageModule',
-    canActivate: [ProfessorGuard]
+    canActivate: [ProfessorGuard],
   },
   {
     path: 'matricular',
@@ -62,7 +63,8 @@ const routes: Routes = [
   {
     path: 'materias-agora',
     loadChildren: './materias-agora/materias-agora.module#MateriasAgoraPageModule',
-    canActivate: [AlunoProfessorGuard]
+    canActivate: [AlunoProfessorGuard],
+    resolve: {materia: MateriaAgoraResolver}
   },
   {
     path: 'gerenciar-usuarios',

@@ -28,7 +28,7 @@ export class ProfessorGuard implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot)
     : boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
             const user: LocalUser = this.storage.getLocalUser();
-            if (!user ||  !this.usuario.funcao.includes('PROFESSOR')) {
+            if (!user ||  !this.usuario.funcao.includes('Professor')) {
                 this.alerta();
                 this.auth.logout();
                 return false;

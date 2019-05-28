@@ -10,7 +10,7 @@ import { Materia } from 'src/models/materia';
 export class MateriaService {
     constructor(private http: HttpClient) {}
     materiaUrl = 'materias';
-   
+
     save(materia: MateriaDTO) {
        return this.http.post(`${API_CONFIG.baseUrl}/${this.materiaUrl}`, materia);
    }
@@ -29,5 +29,9 @@ export class MateriaService {
 
   update(id: string, materiaDTO: MateriaDTO) {
         return this.http.put(`${API_CONFIG.baseUrl}/${this.materiaUrl}/${id}`, materiaDTO);
+    }
+
+    atualizaProf(matricula: MatriculaDTO) {
+        return this.http.put(`${API_CONFIG.baseUrl}/${this.materiaUrl}/professor`, matricula);
     }
 }

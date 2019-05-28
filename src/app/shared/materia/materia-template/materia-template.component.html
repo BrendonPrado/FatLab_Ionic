@@ -11,20 +11,19 @@
             <form [formGroup]="form">
                 <ion-item>
                     <ion-label position="staked">Nome:</ion-label>
-                    <ion-input formControlName="nome"></ion-input>
+                    <ion-input
+                        [disabled]="!editarOn"
+                        formControlName="nome"
+                    ></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label position="staked">Professor:</ion-label>
                     <ion-select
-                        value="2"
-                        formControlName="prof"
+                        [value]="this.materia.professor? this.materia.professor.id :0"
+                        (ionChange)="trocaProf($event)"
+                        [disabled]="!editarOn"
                     >
-                        <ion-select-option
-                            [value]="null"
-                            selected
-                        >
-                            não preenchido
-                        </ion-select-option>
+                        <ion-select-option [value]="0">não preenchido</ion-select-option>
                         <ion-select-option
                             [value]="prof.id"
                             *ngFor="let prof of professores"
@@ -35,7 +34,10 @@
                 </ion-item>
                 <ion-item>
                     <ion-label position="staked">Turma:</ion-label>
-                    <ion-input formControlName="turma"></ion-input>
+                    <ion-input
+                        [disabled]="!editarOn"
+                        formControlName="turma"
+                    ></ion-input>
                 </ion-item>
                 <ion-button
                     (click)='editarInfos()'

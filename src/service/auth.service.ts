@@ -46,7 +46,11 @@ export class AuthService {
         this.router.navigate(['/']);
     }
 
-    findMinhasMaterias() :Observable<Array<Materia>> {
+    findMinhasMaterias(): Observable<Array<Materia>> {
         return this.http.get<Array<Materia>>(`${API_CONFIG.baseUrl}/auth/me/materias`);
+    }
+
+    finMateriaAgr(): Observable<Materia> {
+        return this.http.get<Materia>(`${API_CONFIG.baseUrl}/auth/me/materia-agora`);
     }
 }

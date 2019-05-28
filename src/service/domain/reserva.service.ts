@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { API_CONFIG } from 'src/config/api.config';
 import { Observable, Subject } from 'rxjs';
 import { Reserva } from 'src/models/reserva';
+import { ReservaDTO } from 'src/models/dto/reserva.dto';
 
 @Injectable({providedIn: 'root'})
 export class ReservaService {
@@ -13,12 +14,15 @@ export class ReservaService {
      }
 
 
-     public  reservasMateria(id: string): Observable<Reserva[]> {
-        return  this.http.get<Array<Reserva>>(`${API_CONFIG.baseUrl}/${this.reservasUrl}/materias/${id}`);
+   reservasMateria(id: string): Observable<Reserva[]> {
+        return  this.http.get<Reserva[]>(`${API_CONFIG.baseUrl}/${this.reservasUrl}/materias/${id}`);
      }
 
-     public reservasLab(id: string):  Observable<Reserva[]> {
-      return this.http.get<Array<Reserva>>(`${API_CONFIG.baseUrl}/${this.reservasUrl}/labs/${id}`);
+   reservasLab(id: string):  Observable<Reserva[]> {
+      return this.http.get<Reserva[]>(`${API_CONFIG.baseUrl}/${this.reservasUrl}/labs/${id}`);
    }
 
+   save(reserva: ReservaDTO) {
+      return this.http.post(`${API_CONFIG.baseUrl}/${this.reservasUrl}`, reserva);
+   }
 }

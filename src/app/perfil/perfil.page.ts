@@ -4,6 +4,10 @@ import { StorageService } from 'src/service/storage.service';
 import { AuthService } from 'src/service/auth.service';
 import { ControllService } from 'src/service/controll.service';
 import { SharingService } from 'src/service/sharing.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UsuarioNewDTO } from 'src/models/dto/usuario.new.dto';
+import { UsuarioService } from 'src/service/domain/usuario.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-perfil',
@@ -14,18 +18,30 @@ export class PerfilPage implements OnInit {
 
   usuarioLogado: Usuario;
   campoSenha = 'password';
-  editarOn = true;
+  editarOn = false;
   editarButtonText = 'Editar Informações';
-  constructor(private sharing: SharingService ) {
-    this.sharing.isUserLoggedIn.subscribe(value => {
-      this.usuarioLogado = value;
-    });
+
+  form: FormGroup;
+
+
+  constructor(
+    private sharing: SharingService,
+    private formBuilder: FormBuilder,
+    private usuarioService: UsuarioService,
+    private router: Router
+  ) {
   }
 
   ngOnInit() {
-  }
+    this.sharing.isUserLoggedIn.subscribe(value => {
+      this.usuarioLogado = value;
+    });
 
-  ionViewWillEnter() {
+    this.form = this.formBuilder.group({
+      nome: [this.usuarioLogado.nome, Validators.required],
+      email: [this.usuarioLogado.email, Validators.email],
+      senha: ['', ]
+    });
   }
 
   mostraSenha() {
@@ -35,9 +51,28 @@ export class PerfilPage implements OnInit {
 
 
   editarInfos() {
-    this.editarOn = (this.editarOn === true ) ? false : true;
-    this.editarButtonText = (this.editarOn === true ) ? 'Editar Informações' : 'Salvar Informações';
+    this.editarOn = !this.editarOn;
+    this.editarButtonText = (this.editarOn === false) ? 'Editar Informações' : 'Salvar Informações';
+    if (this.editarOn === false) {
+      if (this.form.get('senha').value) {
+        const usuarioDTO: UsuarioNewDTO = {
+          nome: this.form.get('nome').value,
+          email: this.form.get('email').value,
+          senha: this.form.get('senha').value
+        };
+        this.usuarioService.updateNewDTo(this.usuarioLogado.id, usuarioDTO).subscribe(() => {
+          this.router.navigate(['/login']);
+        }, error => this.editarOn = false);
+      } else {
+        const usuarioDTO: UsuarioNewDTO = {
+          nome: this.form.get('nome').value,
+          email: this.form.get('email').value
+        };
+        this.usuarioService.updateNewDTo(this.usuarioLogado.id, usuarioDTO).subscribe(() => {
+          this.router.navigate(['/login']);
+        }, error => this.editarOn = false);
+      }
 
+    }
   }
-
 }

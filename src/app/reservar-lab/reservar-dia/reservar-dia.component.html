@@ -1,0 +1,57 @@
+<div>
+    <form [formGroup]="form" (submit)="reservar()">
+        <ion-item>
+            <ion-label position="staked">Escolha a materia:</ion-label>
+            <ion-select formControlName="materia">
+                <ion-label position="floating">Materias:</ion-label>
+                <ion-select-option
+                    *ngFor="let materia of materias"
+                    aria-placeholder="materias"
+                    [value]='materia.id'
+                >
+                    {{ materia.nome}} | {{ materia.turma }}
+                </ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label>Dia</ion-label>
+            <ion-datetime
+                formControlName="dia"
+                (ionChange)="verificaLabs()"
+                display-format="DD/MM"
+            ></ion-datetime>
+        </ion-item>
+        <ion-item>
+            <ion-label position="staked">Escolha as aulas:</ion-label>
+            <ion-select
+                (ionChange)="verificaLabs()"
+                [multiple]="true"
+                formControlName="aulas"
+            >
+                <ion-label position="floating">Aulas:</ion-label>
+                <ion-select-option value="1">1ª aula</ion-select-option>
+                <ion-select-option value="2">2ª aula</ion-select-option>
+                <ion-select-option value="3">3ª aula</ion-select-option>
+                <ion-select-option value="4">4ª aula</ion-select-option>
+                <ion-select-option value="5">5ª aula</ion-select-option>
+                <ion-select-option value="6">6ª aula</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item [disabled]="!form.get('aulas').valid || !form.get('dia').valid">
+            <ion-label  position="floating">Escolha um lab disponivel:</ion-label>
+            <ion-select formControlName="lab">
+                <ion-label position="floating">Labs disponiveis</ion-label>
+                <ion-select-option [value]="lab.id" *ngFor="let lab of (labs$ |async)">{{ lab.numero }} | capacidade: {{ lab.capacidade }} alunos</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-button
+            expand="block"
+            color="secondary"
+            type="submit"
+            [disabled]="this.form.invalid"
+        >
+            Reservar
+        </ion-button>
+
+    </form>
+</div>

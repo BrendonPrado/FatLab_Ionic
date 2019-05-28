@@ -48,4 +48,7 @@ export class UsuarioService {
     update(id: number, usuarioDTO: UsuarioDTO) {
         return this.http.put(`${API_CONFIG.baseUrl}/${this.usuariosUrl}/${id}`, usuarioDTO);
     }
+    updateNewDTo(id: string, usuarioDTO: UsuarioNewDTO) {
+        return this.http.put(`${API_CONFIG.baseUrl}/${this.usuariosUrl}/new/${id}`, usuarioDTO);
+    }
 }

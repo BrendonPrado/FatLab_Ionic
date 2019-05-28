@@ -38,14 +38,12 @@ export class CadastrarNovoUsuarioPage implements OnInit {
       this.form.get('tipo').setValue(this.tipo);
       const usuario: UsuarioDTO = this.form.getRawValue();
       this.service.saveDTO(usuario).subscribe( () => {
-        this.tipo = ' ';
-        this.limpaOutrosCampos();
+        this.form.reset();
       });
       } else {
         const usuario = this.form.getRawValue();
         this.service.saveAdmin(usuario).subscribe(  () => {
-           this.tipo = '';
-           this.limpaOutrosCampos();
+           this.form.reset();
           });
       }
   }

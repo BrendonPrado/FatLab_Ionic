@@ -1,5 +1,29 @@
 <app-side-menu titulo="Aula agora"></app-side-menu>
 
 <ion-content color="medium">
-  <app-materia-template [materia]="materiaAgora"></app-materia-template>
+    <ion-item *ngIf="!materia">
+        <ion-card>
+            <ion-card-header>
+                <ion-card-title>
+                    Não há nenhuma materia com reserva para agora !
+                </ion-card-title>
+            </ion-card-header>
+            <ion-item>
+                <ion-card-content>
+                    <ion-item>
+                        <ion-text>
+                            Se quiser ver suas materias e proximos labs reservados aperte o botão aí embaixo :/
+                        </ion-text>
+                    </ion-item>
+                    <ion-button
+                        expand="block"
+                        [routerLink]="['/minhas-materias']"
+                        color="primary"
+                    >
+                        Minhas materias
+                    </ion-button>
+                </ion-card-content>
+            </ion-item>
+        </ion-card>
+    </ion-item>
 </ion-content>

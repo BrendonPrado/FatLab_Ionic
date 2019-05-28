@@ -1,12 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Materia } from 'src/models/materia';
-import { ReservaService } from 'src/service/domain/reserva.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MateriaService } from 'src/service/domain/materia.service';
 import { Professor } from 'src/models/professor';
 import { ActivatedRoute } from '@angular/router';
 import { ObjectEvent, Evento } from 'src/models/object-event';
-import { materialize } from 'rxjs/operators';
+import { MatriculaDTO } from 'src/models/dto/matricula.dto';
 
 
 @Component({
@@ -17,13 +16,13 @@ import { materialize } from 'rxjs/operators';
 export class MateriaTemplateComponent implements OnInit {
 
   @Input() materia: Materia;
-  @Output() modificado: EventEmitter<ObjectEvent>;
+  @Output() modificado = new EventEmitter<ObjectEvent>();
 
   showReservas = false;
   editarOn = false;
   form: FormGroup;
   editarButtonText = 'Editar Informações';
-
+  id_prof;
   professores: Professor[];
 
 
@@ -33,6 +32,7 @@ export class MateriaTemplateComponent implements OnInit {
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.id_prof = this.materia.professor ? this.materia.professor.id : 0;
     this.professores = this.activatedRoute.snapshot.data['professores'];
     this.form = this.formBuilder.group({
       nome: [this.materia.nome],
@@ -48,8 +48,18 @@ export class MateriaTemplateComponent implements OnInit {
   editarInfos() {
     this.editarOn = !this.editarOn;
     this.editarButtonText = (!this.editarOn) ? 'Editar Informações' : 'Salvar Informações';
+
     if (!this.editarOn) {
-      console.log(this.form.getRawValue());
+
+      const id_materia_prof = this.materia.professor ? this.materia.professor.id : null;
+
+      if ( this.id_prof !== id_materia_prof) {
+        const matricula: MatriculaDTO = {
+          materia_id: this.materia.id,
+          usuario_id: this.id_prof != 0 ? this.id_prof : null
+        };
+        this.materiasService.atualizaProf(matricula).subscribe();
+      }
       this.materiasService.update(this.materia.id, this.form.getRawValue()).subscribe();
     }
   }
@@ -61,5 +71,7 @@ export class MateriaTemplateComponent implements OnInit {
     });
   }
 
-
+  trocaProf(event) {
+    this.id_prof = event.detail.value;
+  }
 }

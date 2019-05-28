@@ -9,7 +9,7 @@ import { LandingPage } from './landing.page';
 import { SharedModule } from '../shared/shared.module';
 import { AuthGuardService } from 'src/guards/canActivate/auth.guard';
 import { UsuarioResolver } from 'src/guards/resolvers/usuario.resolver';
-import {MatGridListModule} from '@angular/material/grid-list'; 
+import {MatGridListModule} from '@angular/material/grid-list';
 
 const routes: Routes = [
   {

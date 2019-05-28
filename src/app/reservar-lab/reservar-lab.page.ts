@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ControllService } from 'src/service/controll.service';
+import { Materia } from 'src/models/materia';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-reservar-lab',
@@ -14,21 +15,10 @@ export class ReservarLabPage implements OnInit {
   tempoValueFim: string;
   num_aula: string;
   diasSemana: string;
+  materias: Materia[];
 
   constructor() { }
 
   ngOnInit() {
-  }
-
-  ionViewWillEnter() {
-  }
-
-  UpdateVarTempo(event) {
-    this.tempoValue = '';
-    this.tempoValueFim = '';
-    this.lab = '';
-    this.num_aula = '';
-    this.diasSemana = '';
-    this.tempo = event.detail.value;
   }
 }

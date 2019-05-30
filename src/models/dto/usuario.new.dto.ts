@@ -3,5 +3,4 @@ export interface UsuarioNewDTO {
     email: string;
     senha?: string;
     matricula?: string;
-
 }

@@ -7,8 +7,8 @@
         </ion-toolbar>
       </ion-header>
       <ion-content color="primary">
-        <ion-list>
-          <ion-menu-toggle  auto-hide="false" *ngFor="let p of appPages" >
+        <ion-list color="primary">
+          <ion-menu-toggle  color="primary" auto-hide="false" *ngFor="let p of appPages" >
 
             <ion-item color="secondary" [routerLink]="p.url" [routerDirection]="'root'" *ngIf="p.title==='Sair';else item" (click)="logout()">
               <ion-icon slot="start" [name]="p.icon"></ion-icon>

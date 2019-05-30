@@ -16,7 +16,7 @@ import { routerNgProbeToken } from '@angular/router/src/router_module';
   styleUrls: ['./matricular.page.scss']
 
 })
-export class MatricularPage implements OnInit,OnChanges {
+export class MatricularPage implements OnInit {
     materia: Materia = {
       id: '',
       nome: ''
@@ -32,16 +32,15 @@ export class MatricularPage implements OnInit,OnChanges {
     private usuarioService: UsuarioService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-   ) {
+   ) {}
+
+  ngOnInit() {
     this.sharing.isUserLoggedIn.subscribe(value => {
       this.usuarioLogado = value;
     });
 
     this.materias = this.activatedRoute.snapshot.data['materias'];
     this.minhasMaterias = this.activatedRoute.snapshot.data['minhasMaterias'];
-   }
-
-  ngOnInit() {
   this.atualiza();
   }
 
@@ -57,25 +56,20 @@ export class MatricularPage implements OnInit,OnChanges {
     }
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    this.atualiza();
-  }
-
-
   save() {
     const matricula: MatriculaDTO = {
       materia_id: this.materia.id,
       usuario_id: this.usuarioLogado.id
     };
     console.log(matricula);
-    
-    if (this.usuarioLogado.funcao.includes('Professor')){
-      this.service.matricula(matricula, 'professor').subscribe(response => {
+
+    if (this.usuarioLogado.funcao.includes('Professor')) {
+      this.service.matricula(matricula, 'professor').subscribe(_response => {
         this.minhasMaterias.push(this.materia);
         this.atualizaGoMinhasMaterias();
        });
     } else {
-      this.service.matricula(matricula, 'alunos').subscribe(response => {
+      this.service.matricula(matricula, 'alunos').subscribe(_response => {
         this.minhasMaterias.push(this.materia);
         this.atualizaGoMinhasMaterias();
       });

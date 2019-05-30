@@ -3,6 +3,7 @@ import { Reserva } from 'src/models/reserva';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReservaService } from 'src/service/domain/reserva.service';
+import { ObjectEvent, Evento } from 'src/models/object-event';
 
 @Component({
   selector: 'app-reservas',
@@ -25,7 +26,6 @@ export class ReservasComponent implements OnInit {
     if (this.materiasUrlList.includes(this.router.url)) {
       this.reservas$ = this.reservaService.reservasMateria(this.id);
       this.reservaService.reservasMateria(this.id).subscribe(val => {
-        console.log(val);
       });
     }
     if (this.labUrlList.includes(this.router.url)) {
@@ -33,6 +33,8 @@ export class ReservasComponent implements OnInit {
     }
   }
 
-  excluirReserva(id: string) {
-  }
+
+  excluir(retorno: ObjectEvent) {
+    this.reservas$ = this.reservaService.reservasMateria(this.id);
+    }
 }

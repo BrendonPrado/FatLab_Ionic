@@ -9,6 +9,7 @@ import { ObjectEvent, Evento } from 'src/models/object-event';
 })
 export class MateriaListComponent implements OnInit {
   @Input() materias: Array<Materia>;
+  @Input() admin: boolean;
 
 
   constructor() { }

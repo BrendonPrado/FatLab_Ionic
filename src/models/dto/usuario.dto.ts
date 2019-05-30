@@ -1,7 +1,7 @@
 export interface UsuarioDTO {
 
     matricula: string;
-    tipo: String;
+    tipo: string;
     admin: boolean;
 
 

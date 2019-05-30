@@ -18,6 +18,7 @@ export class ReservarDiaComponent implements OnInit {
   form: FormGroup;
   materias: Materia[];
   labs$: Observable<Lab[]>;
+  dataAgr = new Date();
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -45,6 +46,7 @@ export class ReservarDiaComponent implements OnInit {
 
   reservar() {
     if (this.form.valid) {
+
       const reserva: ReservaDTO = {
         diaMes: new Date(Date.parse(this.form.get('dia').value)).toISOString(),
         lab_id: this.form.get('lab').value,
@@ -52,8 +54,8 @@ export class ReservarDiaComponent implements OnInit {
         num_aula: this.form.get('aulas').value,
         turno: 'Diurno'
       };
-      console.log(reserva);
-      this.reservaService.save(reserva).subscribe(() => {
+
+      this.reservaService.saveDia(reserva).subscribe(() => {
         this.form.reset();
         this.form.get('lab').setValue('');
       });

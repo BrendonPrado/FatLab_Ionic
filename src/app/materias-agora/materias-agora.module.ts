@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { MateriasAgoraPage } from './materias-agora.page';
 import { SharedModule } from '../shared/shared.module';
+import { MateriaModule } from '../shared/materia/materia.module';
 
 const routes: Routes = [
   {
@@ -21,7 +22,8 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    SharedModule
+    SharedModule,
+    MateriaModule
   ],
   declarations: [MateriasAgoraPage]
 })

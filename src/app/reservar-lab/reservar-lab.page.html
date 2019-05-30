@@ -3,17 +3,34 @@
 <ion-content color="medium">
     <ion-card>
         <ion-item>
-            <ion-card-header>
-                <h3>Reserve um Lab Por:</h3>
-            </ion-card-header>
+            <ion-icon name="calendar"></ion-icon>
         </ion-item>
         <ion-item>
             <ion-card-content>
-                <ion-item>
-                    <ion-button [routerLink]="['/reservar-lab/dia']">Dia</ion-button>
-                    <ion-button [routerLink]="['/reservar-lab/mes']">Mes</ion-button>
-                    <ion-button [routerLink]="['/reservar-lab/dia']">Semestre</ion-button>
-                </ion-item>
+                <ion-list>
+                    <ion-title>
+                        <h1>Reserve um Lab Por:</h1>
+                    </ion-title>
+                    <ion-item>
+                        <ion-segment
+                            value="dia"
+                            color="primary"
+                        >
+                            <ion-segment-button
+                                value="dia"
+                                [routerLink]="['/reservar-lab/dia']"
+                            >
+                                <ion-label>Dia</ion-label>
+                            </ion-segment-button>
+                            <ion-segment-button
+                                value="mes"
+                                [routerLink]="['/reservar-lab/mes']"
+                            >
+                                <ion-label>Mês</ion-label>
+                            </ion-segment-button>
+                        </ion-segment>
+                    </ion-item>
+                </ion-list>
                 <router-outlet></router-outlet>
             </ion-card-content>
         </ion-item>

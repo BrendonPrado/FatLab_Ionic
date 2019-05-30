@@ -12,42 +12,47 @@
                 <ion-item>
                     <ion-label position="staked">Nome:</ion-label>
                     <ion-input
-                        [disabled]="!editarOn"
+                        [readonly]="!admin"
+                        [disabled]="!editarOn && admin"
                         formControlName="nome"
                     ></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label position="staked">Professor:</ion-label>
-                    <ion-select
-                        [value]="this.materia.professor? this.materia.professor.id :0"
-                        (ionChange)="trocaProf($event)"
-                        [disabled]="!editarOn"
-                    >
-                        <ion-select-option [value]="0">não preenchido</ion-select-option>
-                        <ion-select-option
-                            [value]="prof.id"
-                            *ngFor="let prof of professores"
-                        >
-                            {{ prof.usuario.nome }}
-                        </ion-select-option>
-                    </ion-select>
+                    <ion-text *ngIf="!admin;else selectProf">{{ materia.professor ? materia.professor.usuario.nome: "Professor não definido" }}</ion-text>
+                    <ng-template #selectProf>
+                        <ion-select
+                            [value]="this.materia.professor? this.materia.professor.id :0"
+                            (ionChange)="trocaProf($event)"
+                            [disabled]="!editarOn && admin"
+                            >
+                            <ion-select-option [value]="0">não preenchido</ion-select-option>
+                            <ion-select-option
+                                [value]="prof.id"
+                                *ngFor="let prof of professores"
+                            >
+                                {{ prof.usuario.nome }}
+                            </ion-select-option>
+                        </ion-select>
+                    </ng-template>
                 </ion-item>
                 <ion-item>
                     <ion-label position="staked">Turma:</ion-label>
                     <ion-input
-                        [disabled]="!editarOn"
+                        [disabled]="!editarOn && admin"
                         formControlName="turma"
+                        [readonly]="!admin"
                     ></ion-input>
                 </ion-item>
                 <ion-button
                     (click)='editarInfos()'
                     expand="block"
                     color="primary"
+                    *ngIf="admin"
                 >
                     {{ editarButtonText }}
                 </ion-button>
             </form>
-
             <ion-button
                 color="secondary"
                 expand="block"
@@ -76,8 +81,9 @@
                 color="danger"
                 expand="block"
                 (click)="remove(materia.id)"
+                *ngIf="admin"
             >
-                Excluir
+                Excluir Materia
             </ion-button>
         </ion-list>
 

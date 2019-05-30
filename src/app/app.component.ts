@@ -10,14 +10,13 @@ import { SharingService } from 'src/service/sharing.service';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrls: ['app.component.scss']
 })
-export class AppComponent  {
-
-
-
+export class AppComponent {
   usuario: Usuario;
   appPages: Array<any>;
+
 
   constructor(
     private platform: Platform,
@@ -26,17 +25,14 @@ export class AppComponent  {
     private auth: AuthService,
     private sharing: SharingService,
     private menu: MenuController
-
   ) {
     this.menu.enable(false);
-    this.sharing.isUserLoggedIn.subscribe( value => {
+    this.sharing.isUserLoggedIn.subscribe(value => {
       this.usuario = value;
       this.atualiza();
-  });
+    });
     this.initializeApp();
   }
-
-
 
   initializeApp() {
     this.platform.ready().then(() => {
@@ -45,39 +41,37 @@ export class AppComponent  {
     });
   }
 
-
-
-  // monta o side menu a partir do nivel do usuário no momento!
+   // monta o side menu a partir do nivel do usuário no momento!
   atualiza() {
     this.appPages = [];
-    this.appPages.push(   {
+    this.appPages.push({
       title: 'Home',
       url: '/landing',
       icon: 'home',
       nivel: 'autenticado'
     }
-    , {
-      title: 'Perfil',
-      url: '/perfil',
-      icon: 'person',
-      nivel: 'autenticado'
-    });
-    if ( this.usuario.funcao && ((this.usuario.funcao.includes('Aluno')) ||  (this.usuario.funcao.includes('Professor')))) {
+      , {
+        title: 'Perfil',
+        url: '/perfil',
+        icon: 'person',
+        nivel: 'autenticado'
+      });
+    if (this.usuario.funcao && ((this.usuario.funcao.includes('Aluno')) || (this.usuario.funcao.includes('Professor')))) {
       this.appPages.push({
         title: 'Aula Agora',
         url: '/materias-agora',
         icon: 'notifications-outline',
       },
-      {
-        title: 'Matricular em uma matéria',
-        url: '/matricular',
-        icon: 'school',
-      },
-      {
-        title: 'Minhas Matérias',
-        url: '/minhas-materias',
-        icon: 'bookmarks',
-      });
+        {
+          title: 'Matricular em uma matéria',
+          url: '/matricular',
+          icon: 'school',
+        },
+        {
+          title: 'Minhas Matérias',
+          url: '/minhas-materias',
+          icon: 'bookmarks',
+        });
     }
     if (this.usuario.funcao && this.usuario.funcao.includes('Professor')) {
       this.appPages.push({
@@ -92,31 +86,31 @@ export class AppComponent  {
         url: '/cadastrar-novo-usuario',
         icon: 'person-add',
       },
-      {
-        title: 'Cadastrar Lab',
-        url: '/cadastrar-lab',
-        icon: 'unlock',
-      },
-      {
-        title: 'Cadastrar nova Matéria',
-        url: '/cadastrar-materia',
-        icon: 'unlock',
-      },
-      {
-        title: 'Gerenciar Usuários',
-        url: '/gerenciar-usuarios',
-        icon: 'unlock',
-      },
-      {
-        title: 'Gerenciar Labs',
-        url: '/gerenciar-lab',
-        icon: 'unlock',
-      },
-      {
-        title: 'Gerenciar Matérias',
-        url: '/gerenciar-materia',
-        icon: 'unlock',
-      }
+        {
+          title: 'Cadastrar Lab',
+          url: '/cadastrar-lab',
+          icon: 'unlock',
+        },
+        {
+          title: 'Cadastrar nova Matéria',
+          url: '/cadastrar-materia',
+          icon: 'unlock',
+        },
+        {
+          title: 'Gerenciar Usuários',
+          url: '/gerenciar-usuarios',
+          icon: 'unlock',
+        },
+        {
+          title: 'Gerenciar Labs',
+          url: '/gerenciar-lab',
+          icon: 'unlock',
+        },
+        {
+          title: 'Gerenciar Matérias',
+          url: '/gerenciar-materia',
+          icon: 'unlock',
+        }
       );
     }
     this.appPages.push({
@@ -127,7 +121,7 @@ export class AppComponent  {
     this.sharing.setPages(this.appPages);
   }
 
-logout() {
-  this.auth.logout();
+  logout() {
+    this.auth.logout();
   }
 }

@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { LabService } from 'src/service/domain/lab.service';
 import { ReservaService } from 'src/service/domain/reserva.service';
 import { ReservaDTO } from 'src/models/dto/reserva.dto';
+import { ReservaMesDTO } from 'src/models/dto/reserva-mes.dto';
 
 @Component({
   selector: 'app-reservar-mes',
@@ -16,6 +17,7 @@ import { ReservaDTO } from 'src/models/dto/reserva.dto';
 export class ReservarMesComponent implements OnInit {
 
 
+  dataAgr = new Date();
   form: FormGroup;
   materias: Materia[];
   labs$: Observable<Lab[]>;
@@ -39,7 +41,7 @@ export class ReservarMesComponent implements OnInit {
   }
 
   verificaLabs() {
-    if (this.form.get('aulas').valid && this.form.get('dias').valid && this.form.get('mes').valid) {
+    if (this.form.get('aulas').valid && this.form.get('dias').valid && (this.form.get('dias').valid && this.form.get('lab').value == '') ) {
 
       const date = new Date(Date.parse(this.form.get('mes').value));
 
@@ -54,15 +56,18 @@ export class ReservarMesComponent implements OnInit {
 
   reservar() {
     if (this.form.valid) {
-      const reserva: ReservaDTO = {
-        diaMes: new Date(Date.parse(this.form.get('mes').value)).toISOString(),
+
+      const reserva: ReservaMesDTO = {
+        mes: new Date(Date.parse(this.form.get('mes').value)).getMonth(),
         lab_id: this.form.get('lab').value,
         materia_id: this.form.get('materia').value,
         num_aula: this.form.get('aulas').value,
-        turno: 'Diurno'
+        turno: 'Diurno',
+        diasSemana: this.form.get('dias').value
       };
+
       console.log(reserva);
-      this.reservaService.save(reserva).subscribe(() => {
+      this.reservaService.saveMes(reserva).subscribe(() => {
         this.form.reset();
         this.form.get('lab').setValue('');
       });

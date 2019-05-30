@@ -1,5 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Reserva } from 'src/models/reserva';
+import { ObjectEvent, Evento } from 'src/models/object-event';
+import { ReservaService } from 'src/service/domain/reserva.service';
+import { SharingService } from 'src/service/sharing.service';
 
 @Component({
   selector: 'app-reserva-template',
@@ -9,8 +12,22 @@ import { Reserva } from 'src/models/reserva';
 export class ReservaTemplateComponent implements OnInit {
 
   @Input() reserva: Reserva;
-  constructor() { }
+  @Output() modificado = new EventEmitter<ObjectEvent>();
 
-  ngOnInit() {}
+  admin: boolean;
 
+  constructor(private reservaService: ReservaService, private sharing: SharingService) { }
+
+  ngOnInit() {
+    this.sharing.isUserLoggedIn.subscribe(u =>
+      this.admin = u.funcao.includes('Admin') || u.funcao.includes('Professor')
+    );
+  }
+
+  remove() {
+    this.reservaService.delete(this.reserva.id).subscribe( () => {
+      const event: ObjectEvent = { evento: Evento.DELETADO, id: this.reserva.id };
+      this.modificado.emit(event);
+    });
+  }
 }

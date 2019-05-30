@@ -1,7 +1,7 @@
 <app-side-menu titulo="Aula agora"></app-side-menu>
 
 <ion-content color="medium">
-    <ion-item *ngIf="!materia">
+    <ion-item *ngIf="!materia;else materiaAgora">
         <ion-card>
             <ion-card-header>
                 <ion-card-title>
@@ -26,4 +26,7 @@
             </ion-item>
         </ion-card>
     </ion-item>
+    <ng-template #materiaAgora>
+        <app-materia-template [materia]="materia"> </app-materia-template>
+    </ng-template>
 </ion-content>

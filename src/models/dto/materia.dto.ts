@@ -1,6 +1,4 @@
-export interface MateriaDTO{
-
-	nome:string;
-
-	turma:string;
+export interface MateriaDTO {
+   nome: string;
+   turma: string;
 }

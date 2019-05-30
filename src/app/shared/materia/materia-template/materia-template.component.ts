@@ -16,6 +16,7 @@ import { MatriculaDTO } from 'src/models/dto/matricula.dto';
 export class MateriaTemplateComponent implements OnInit {
 
   @Input() materia: Materia;
+  @Input() admin: boolean;
   @Output() modificado = new EventEmitter<ObjectEvent>();
 
   showReservas = false;

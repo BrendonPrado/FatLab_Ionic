@@ -19,6 +19,7 @@
                 formControlName="dia"
                 (ionChange)="verificaLabs()"
                 display-format="DD/MM"
+                [min]="dataAgr.toISOString()"
             ></ion-datetime>
         </ion-item>
         <ion-item>

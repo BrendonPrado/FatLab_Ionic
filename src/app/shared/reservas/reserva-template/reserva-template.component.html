@@ -1,82 +1,81 @@
-
 <mat-card class="example-card">
 
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-
-  </mat-card-header>
-  <mat-card-content>
-     <ion-card>
-       <ion-card-content>
-        
-          <ion-grid>
+    <mat-card-header>
+        <div
+            mat-card-avatar
+            class="example-header-image"
+        ></div>
+    </mat-card-header>
+    <mat-card-content>
+        <ion-grid>
             <ion-row>
-              <ion-col>
-                <ion-item>
-                  <ion-item>
-                    <ion-label position="stacked">Matéria: </ion-label>
-                    <ion-text>   {{ reserva.materia.nome}}</ion-text> 
-                  </ion-item>
-                </ion-item>
-              </ion-col>
-              <ion-col>
-                <ion-item>
-                    <ion-label position="stacked">Dia: </ion-label>
-                    <ion-text>{{ reserva.diaMes | date:'dd/MM/yy'}}</ion-text>
-                </ion-item>
-              </ion-col>
-              <ion-col>
                 <ion-col>
-                  
+                    <ion-item>
+                        <ion-item>
+                            <ion-label position="stacked">Matéria:</ion-label>
+                            <ion-text>{{ reserva.materia.nome}}</ion-text>
+                        </ion-item>
+                    </ion-item>
                 </ion-col>
-                <ion-item>
-                  <ion-label position="stacked">horario Inicial: </ion-label>
-                  <ion-text>{{ reserva.horarioComecoFimAula.horaComeco }}</ion-text>
-                  <ion-label position="stacked">horario Final: </ion-label>
-                  <ion-text>{{reserva.horarioComecoFimAula.horaFim}}</ion-text>
-                </ion-item>
-              </ion-col>
-              <ion-col>
-                <ion-item>
-                  <ion-label position="stacked">Professor:</ion-label>
-                  <ion-text>{{reserva.materia.professor.usuario.nome}}</ion-text>
-                </ion-item>
-              </ion-col>
-              <ion-col>
-                <ion-item>
-                  <ion-label position="stacked">Lab: </ion-label>
-                  <ion-text>{{reserva.lab.numero}}</ion-text>
-                </ion-item>
-              </ion-col>
             </ion-row>
-          </ion-grid>
-                  
-    
-<!--
-                  </ion-item>
-                  <ion-item>
-    
-                         
-                  </ion-item>
-                  <ion-item>
 
-                  </ion-item>
-           
-                <ion-item >
-                  <ion-item>
+            <ion-row>
+                <ion-col>
+                    <ion-item>
+                        <ion-label position="stacked">Dia:</ion-label>
+                        <ion-text>{{ reserva.diaMes | date:'dd/MM/yy'}}</ion-text>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-item>
+                    <ion-col>
+                        <ion-item>
+                            <ion-label position="stacked">horario do Começo:</ion-label>
+                            <ion-text>
+                                {{reserva.horarioComecoFimAula.horaComeco}}
+                            </ion-text>
+                        </ion-item>
+                    </ion-col>
 
-                  </ion-item>
-                  <ion-item>
-            
-                  </ion-item>
-                  
-                  </ion-item>-->
-        
-       </ion-card-content>
-     </ion-card>
-   
-  </mat-card-content>
-  <mat-card-actions>
-    <ion-button expand="block" color="danger">Remover</ion-button>
-  </mat-card-actions>
+                    <ion-col>
+                        <ion-item>
+                            <ion-label position="stacked">horario do Fim:</ion-label>
+                            <ion-text>
+                                {{reserva.horarioComecoFimAula.horaFim}}
+                            </ion-text>
+                        </ion-item>
+                    </ion-col>
+                </ion-item>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-item>
+                        <ion-label position="stacked">Professor:</ion-label>
+                        <ion-text>
+                                {{ reserva.materia.professor ? reserva.materia.professor.usuario.nome: "Professor não definido" }}
+                            </ion-text>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-item>
+                        <ion-label position="stacked">Lab:</ion-label>
+                        <ion-text>{{reserva.lab.numero}}</ion-text>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </mat-card-content>
+    <mat-card-actions>
+        <ion-button
+            expand="block"
+            color="danger"
+            (click)="remove()"
+            *ngIf="admin"
+        >
+            Remover Reserva
+        </ion-button>
+    </mat-card-actions>
 </mat-card>

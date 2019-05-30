@@ -31,6 +31,7 @@ export class LandingPage implements OnInit {
 
   ngOnInit() {
     this.sharing.setUsuario(this.activatedRoute.snapshot.data['usuario']);
+    this.pages = this.pages.filter(p => p.title != 'Home');
   }
 
   ionViewWillLeave() {
